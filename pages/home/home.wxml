@@ -1,0 +1,25 @@
+<!--pages/home/home.wxml-->
+<view>
+    <image src="{{toptheme[0].entrance_img}}" class="top-theme"/>
+
+    <swiper class="banners" indicator-dots="{{true}}" indicator-color indicator-active-color="#157658" interval="4000"
+            circular autoplay>
+        <block wx:for="{{bannerB.items}}" wx:key="index" wx:for-item="item">
+            <swiper-item>
+                <image src="{{item.img}}" class="item"/>
+            </swiper-item>
+        </block>
+    </swiper>
+
+
+    <l-grid l-class="grid">
+        <l-grid-item wx:for="{{categoryC}}" wx:key="{{index}}" key="{{index}}" slot="{{index}}">
+
+            <image class="category_icon" src="{{item.img}}" />
+            <view class="category_text">{{item.title}}</view>
+        </l-grid-item>
+    </l-grid>
+    <view>
+        <l-water-flow generic:l-water-flow-item="l-water-flow-item" column-gap="10rpx"/>
+    </view>
+</view>
