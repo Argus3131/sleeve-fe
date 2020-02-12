@@ -17,7 +17,8 @@ Page({
    */
   data: {
     items: [],
-    banner: []
+    banner: [],
+    grid:[]
   },
 
   /**
@@ -32,17 +33,17 @@ Page({
     // resolve 的参数作为 await 表达式的运算结果。 ThemeModel.getLocationA_theme()返回的是一个Promise对象
     const themeA = await Theme.getLocationA()
     const bannerB = await Banner.getLocationB()
-    const categoryC = await Category.getLocationC()
+    const grid = await Category.getLocationC()
     const skuLatest = await WaterFlow.getSkuLatest()
     const items_arr = this.processData(skuLatest.items)
-    console.log(categoryC)
+    console.log(grid)
     // 提取出获取数据的 init方法避免多次setData
     this.setData({
       toptheme: themeA,
       bannerB: bannerB,
       skuLatest: skuLatest,
       items: items_arr,
-      categoryC: categoryC
+      grid: grid
     })
     if (this.data.items !== []) {
       wx.lin.renderWaterFlow(this.data.items, false, () => {

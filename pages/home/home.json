@@ -1,9 +1,8 @@
 {
   "usingComponents": {
     "l-water-flow": "/miniprogram_npm/lin-ui/water-flow/index",
-    "l-water-flow-item": "/Component/water-flow-item/index",
-    "l-grid": "/miniprogram_npm/lin-ui/grid/index",
-    "l-grid-item": "/miniprogram_npm/lin-ui/grid-item/index",
-    "l-icon": "/miniprogram_npm/lin-ui/icon/index"
+    "l-water-flow-item": "/component/water-flow-item/index",
+    "l-icon": "/miniprogram_npm/lin-ui/icon/index",
+    "l-category": "/component/category/index"
   }
 }
