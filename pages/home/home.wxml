@@ -1,6 +1,6 @@
 <!--pages/home/home.wxml-->
 <view class="container">
-    <image src="{{toptheme[0].entrance_img}}" class="top-theme"/>
+    <image src="{{themeA.entrance_img}}" class="top-theme"/>
 
     <swiper class="banners" indicator-dots="{{true}}" indicator-color indicator-active-color="#157658" interval="4000"
             circular autoplay>
@@ -11,7 +11,9 @@
         </block>
     </swiper>
     <l-category grid="{{grid}}" />
+    <image class="activity" src="{{activity.entrance_img}}" />
+    <l-scoll class="scoll-content" scollers="{{scollers.spu_list}}" scroller_img="{{scollers.title_img}}"/>
     <view>
-        <l-water-flow generic:l-water-flow-item="l-water-flow-item" column-gap="10rpx"/>
+        <l-water-flow generic:l-water-flow-item="l-water-flow-item" column-gap="-17.5rpx"/>
     </view>
 </view>

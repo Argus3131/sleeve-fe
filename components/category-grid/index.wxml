@@ -1,6 +1,8 @@
 <!--Component/category/index.wxml-->
 <view class="container">
-  <l-grid class="inner-container">
+<!--这边使用l-class 按照官方文档要求使用外部样式类去引入css文件去实现-->
+ <view class="inner-container">
+    <l-grid l-class="inner-container">
     <!-- <block wx:for="{{grid}}" wx:key="key" wx:item="item"> -->
       <l-grid-item wx:for="{{grid}}" wx:key="key" key="{{index}}" slot="{{index}}">
         <view class="grid">
@@ -10,4 +12,7 @@
       </l-grid-item>
     <!-- </block> -->
   </l-grid>
+ </view>
+
 </view>
+

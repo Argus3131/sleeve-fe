@@ -4,7 +4,7 @@ import {
 
 /**
  * @author: Argus
- * @description TODO
+ * @description Banner
  * @date 2020/2/11 21:53
  */
 class Banner {

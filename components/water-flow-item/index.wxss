@@ -2,17 +2,22 @@
 
 .life-container {
   width: 340rpx !important;
-  padding: 0 0 20rpx 0 !important;
+  padding: 0 20rpx 0 0 !important;
   background-color: #fff !important;
   box-shadow: 0px 8rpx 20rpx 0px rgba(221, 221, 221, 0.5) !important;
-  border-radius: 16rpx !important;
+  border-radius: 5rpx !important;
   overflow: hidden;
   margin-bottom: 30rpx;
 }
 
-.life-img {
+.life-img1 {
   width: 350rpx !important;
-  /* height: 380rpx !important; */
+  height: 350rpx !important;
+}
+
+.life-img2 {
+  width: 350rpx !important;
+  height: 480rpx !important;
 }
 
 .life-product-contianer {
@@ -34,7 +39,15 @@
   font-size: 24rpx;
   text-align: justify;
   color: #999;
-  margin-top: 15rpx;
+  margin-bottom: 20rpx;
   display: flex;
   flex-wrap: wrap;
+}
+
+.price-container{
+ margin-top: 15rpx;
+}
+
+.del-price {
+  margin-left: 10rpx;
 }

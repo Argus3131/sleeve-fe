@@ -1,14 +1,9 @@
 // pages/home/home.js
-import {
-  Theme
-} from '../../model/theme'
-import {
-  Banner
-} from '../../model/banner'
-import {
-  WaterFlow
-} from '../../model/waterFlow'
+import { Theme } from '../../model/theme'
+import { Banner } from '../../model/banner'
+import { WaterFlow } from '../../model/waterFlow'
 import { Category } from '../../model/category'
+import { Actvity } from '../../model/actvity'
 
 Page({
 
@@ -16,9 +11,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    toptheme: [],
+    bannerB: null,
+    grid: [],
+    activity: null,
     items: [],
-    banner: [],
-    grid:[]
+    skuLatest: null
   },
 
   /**
@@ -31,32 +29,40 @@ Page({
 
   async initAllData () {
     // resolve 的参数作为 await 表达式的运算结果。 ThemeModel.getLocationA_theme()返回的是一个Promise对象
-    const themeA = await Theme.getLocationA()
+    const themes = await Theme.getThemes()
+    // console.log(themes)
+    // todo   写sku spu小结 写瀑布流优化
+    const themeA = themes['locationA']
     const bannerB = await Banner.getLocationB()
     const grid = await Category.getLocationC()
+    const activity = await Actvity.getLocationD()
+    const scollers = await Theme.getScollers('t-2')
     const skuLatest = await WaterFlow.getSkuLatest()
-    const items_arr = this.processData(skuLatest.items)
-    console.log(grid)
+    const items_arr = this.processData_SkuLatest(skuLatest.items)
     // 提取出获取数据的 init方法避免多次setData
+    console.log(scollers)
     this.setData({
-      toptheme: themeA,
+      themeA: themeA,
       bannerB: bannerB,
-      skuLatest: skuLatest,
+      grid: grid,
+      activity: activity,
+      scollers:scollers,
       items: items_arr,
-      grid: grid
+      skuLatest: skuLatest,
     })
     if (this.data.items !== []) {
       wx.lin.renderWaterFlow(this.data.items, false, () => {
-        console.log('渲染成功')
+        // console.log('渲染成功')
       })
     }
 
   },
-  processData (items) {
+  /**
+   *   处理sku商品数据转换
+   */
+  processData_SkuLatest (items) {
     let item_arr = []
-    // console.log(items)
     for (let j = 0, length = items.length; j < length; j++) {
-      // console.log(j)
       let item = {
         image: items[j].img,
         title: items[j].title,
