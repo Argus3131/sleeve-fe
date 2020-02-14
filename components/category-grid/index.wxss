@@ -25,6 +25,10 @@
   align-items: center;
 }
 
+/* .l-grid-item {
+  width: 100rpx;
+} */
+
 .grid_icon {
   width: 60rpx;
   height: 60rpx;
@@ -56,7 +60,7 @@
 }
 
 .grid-item {
-  width: 200rpx;
+  width: 50rpx;
   display: flex;
   flex-direction: column;
   align-items: center;

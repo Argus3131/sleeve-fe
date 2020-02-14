@@ -1,20 +1,16 @@
 <!--components/scoll-area/index.wxml-->
 <view class="container">
-    <image src="{{scroller_img}}" bind:tap="clickScollerTab" class="scroller_img"/>
-    <scroll-view scroll-left scroll-x class="scroller">
-        <block wx:for="{{scollers}}" wx:key="key" wx:for-item="item">
-            <view class="scoller-item" bind:tap="clickScollerItem">
-                <view class="scoller-inner">
-                    <image src="{{item.img}}" class="item-img"/>
-                    <l-price unit="￥" value="{{item.price}}" value-color="#157658" unit-color="#157658" value-size="24"
-                            unit-size="24"></l-price>
-                    <view class="title">{{item.title}}</view>
-                </view>
+  <image src="{{scroller_img}}" bind:tap="clickScollerTab" class="scroller_img" />
+  <scroll-view scroll-left scroll-x class="scroller">
+    <block wx:for="{{scollers}}" wx:key="key" wx:for-item="item">
+      <view class="scoller-item" bind:tap="clickScollerItem">
+        <view class="scoller-inner">
+          <image src="{{item.img}}" class="item-img" />
+          <l-price unit="￥" value="{{item.price}}" value-color="#157658" unit-color="#157658" value-size="23" unit-size="23" unit-bold="400" value-bold="400"></l-price>
+          <view class="title">{{item.title}}</view>
+        </view>
 
-            </view>
-        </block>
-    </scroll-view>
+      </view>
+    </block>
+  </scroll-view>
 </view>
-
-
-

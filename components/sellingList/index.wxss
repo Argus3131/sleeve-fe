@@ -1,0 +1,41 @@
+/* components/sellingList/index.wxss */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* height: 500rpx; */
+  background-color: #fff;
+}
+
+.img {
+  width: 690rpx;
+  height: 88rpx;
+  margin-top: 40rpx;
+  margin-bottom: 30rpx;
+}
+
+.selling-list {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.left {
+  float: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.right {
+  float: right;
+  display: flex;
+  flex-direction: column;
+}
+
+.right image:nth-child(odd){
+  margin-bottom:6rpx;
+} 

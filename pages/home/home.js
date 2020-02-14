@@ -34,19 +34,26 @@ Page({
     // todo   写sku spu小结 写瀑布流优化
     const themeA = themes['locationA']
     const bannerB = await Banner.getLocationB()
-    const grid = await Category.getLocationC()
-    const activity = await Actvity.getLocationD()
-    const scollers = await Theme.getScollers('t-2')
+    const gridC = await Category.getLocationC()
+    const activityD = await Actvity.getLocationD()
+    const scollersE = await Theme.getLocationE('t-2')
+    const themeF = themes['locationF']
+    const bannerG = await Banner.getLocationG()
     const skuLatest = await WaterFlow.getSkuLatest()
     const items_arr = this.processData_SkuLatest(skuLatest.items)
     // 提取出获取数据的 init方法避免多次setData
-    console.log(scollers)
+    //.slice(0,2)
+    const arr = bannerG.items
+    // console.log(arr)
     this.setData({
       themeA: themeA,
       bannerB: bannerB,
-      grid: grid,
-      activity: activity,
-      scollers:scollers,
+      gridC: gridC,
+      activityD: activityD,
+      themeF:themeF,
+      bannerG:bannerG,
+      scollersE:scollersE,
+      arr:arr,
       items: items_arr,
       skuLatest: skuLatest,
     })

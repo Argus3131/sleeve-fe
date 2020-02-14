@@ -18,8 +18,7 @@ const locations_map = {
 
 class Theme {
   static themes = {}
-  static locations = ['t-1', 't-2', 't-4', 't-5', 't-6']
-  static url_theme = '/v1/theme/by/names'
+  static locations = ['t-1', 't-2','t-3', 't-4', 't-5', 't-6']
   /**
    *  async function 声明用于定义一个返回 AsyncFunction 对象的异步函数。
    *  异步函数是指通过事件循环异步执行的函数，它会通过一个隐式的 Promise 返回其结果。
@@ -31,7 +30,7 @@ class Theme {
     //当 async 函数抛出异常时，Promise 的 reject 方法也会传递这个异常值
     // await 操作符用于等待一个Promise 对象。它只能在异步函数 async function 中使用。
     const res = await HTTP.request({
-      url: Theme.url_theme,
+      url: '/v1/theme/by/names',
       data: {
         names: `${Theme.locations.join(',')}`
       }
@@ -46,7 +45,12 @@ class Theme {
     return themes
   }
 
-  static async getScollers(theme_name) {
+  /**
+   * 获取sku_scoll
+   * @param theme_name sku_scoll
+   * @returns {Promise<*>}
+   */
+  static async getLocationE(theme_name) {
     const res = await HTTP.request({
       url: `/v1/theme/name/${theme_name}/with_spu`,
     })
@@ -91,7 +95,7 @@ class Theme {
   }
 
 
-  static async getLocationA () {
+  static async _getLocationA () {
     const res = await HTTP.request({
       url: Theme.url,
       data: {
@@ -101,7 +105,7 @@ class Theme {
     return res.data
   }
 
-  static async getLocationE () {
+  static async _getLocationE () {
     const res = await HTTP.request({
       url: Theme.url,
       data: {

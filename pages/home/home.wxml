@@ -1,19 +1,25 @@
 <!--pages/home/home.wxml-->
 <view class="container">
-    <image src="{{themeA.entrance_img}}" class="top-theme"/>
+  <image class="top-theme" src="{{themeA.entrance_img}}" />
 
-    <swiper class="banners" indicator-dots="{{true}}" indicator-color indicator-active-color="#157658" interval="4000"
-            circular autoplay>
-        <block wx:for="{{bannerB.items}}" wx:key="index" wx:for-item="item">
-            <swiper-item>
-                <image src="{{item.img}}" class="item"/>
-            </swiper-item>
-        </block>
-    </swiper>
-    <l-category grid="{{grid}}" />
-    <image class="activity" src="{{activity.entrance_img}}" />
-    <l-scoll class="scoll-content" scollers="{{scollers.spu_list}}" scroller_img="{{scollers.title_img}}"/>
-    <view>
-        <l-water-flow generic:l-water-flow-item="l-water-flow-item" column-gap="-17.5rpx"/>
-    </view>
+  <swiper class="banners" indicator-dots="{{true}}" indicator-color indicator-active-color="#157658" interval="4000" circular autoplay>
+    <!-- #157658-->
+    <block wx:for="{{bannerB.items}}" wx:key="index" wx:for-item="item">
+      <swiper-item>
+        <image src="{{item.img}}" class="item" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <l-category grid="{{gridC}}" />
+  <image class="activity" src="{{activityD.entrance_img}}" />
+  <l-scoll class="scoll-content" scollers="{{scollersE.spu_list}}" scroller_img="{{scollersE.title_img}}" />
+  <image class="themeF" src="{{themeF.entrance_img}}" />
+  <view class="test">
+    <l-selling class="selling" selling="{{bannerG}}" items="{{arr}}" rightWidth="{{800}}" rightHeight="{{520}}" leftWidth="{{344}}" leftHeight="{{526}}" />
+  </view>
+
+  <view>
+    <l-water-flow generic:l-water-flow-item="l-water-flow-item" column-gap="-17.5rpx" />
+  </view>
+
 </view>

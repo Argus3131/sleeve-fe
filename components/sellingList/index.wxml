@@ -1,0 +1,16 @@
+<!--components/sellingList/index.wxml-->
+<view class="container">
+  <image src="{{selling.img}}" class="img" />
+  <view class="selling-list">
+    <view class="left">
+      <block wx:for="{{left}}" wx:key="key" wx:for-index="idx" wx:for-item="item">
+        <image class="left-item-{{idx}}" src="{{item.img}}" data-id="{{item.id}}" style="width:{{leftWidth}}rpx;height:{{leftHeight}}rpx;" bindtap="onSelling"/>
+      </block>
+    </view>
+    <view class="right">
+      <block wx:for="{{right}}" wx:key="key" wx:for-index="idx" wx:for-item="item">
+        <image class="right-item-{{idx}}" src="{{item.img}}" data-id="{{item.id}}" style="width:{{rightWidth}}rpx;height:{{rightHeight}}rpx;" bindtap="onSelling"/>
+      </block>
+    </view>
+  </view>
+</view>

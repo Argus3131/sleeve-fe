@@ -2,9 +2,9 @@
 <view class="container">
 <!--这边使用l-class 按照官方文档要求使用外部样式类去引入css文件去实现-->
  <view class="inner-container">
-    <l-grid l-class="inner-container">
+    <l-grid l-class="inner-container" row-num="3">
     <!-- <block wx:for="{{grid}}" wx:key="key" wx:item="item"> -->
-      <l-grid-item wx:for="{{grid}}" wx:key="key" key="{{index}}" slot="{{index}}">
+      <l-grid-item wx:for="{{grid}}" wx:key="key" key="{{index}}" slot="{{index}}" l-grid-item-class="l-grid-item">
         <view class="grid">
           <image class="grid_icon" src="{{item.img}}" />
           <text class="grid_text">{{item.title}}</text>
