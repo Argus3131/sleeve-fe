@@ -1,0 +1,39 @@
+/* components/discount/index.wxss */
+.discount-tag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.triangle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+.discount {
+  width: 40rpx;
+  height: 74rpx;
+  /* margin: 0 auto; */
+  padding-top: 3rpx;
+  text-align: center;
+  line-height: 30rpx;
+  font-size: 24rpx;
+  color: #fff;
+  background-color: #9e2731;
+}
+
+.triangle-topright {
+  width: 0;
+  height: 0;
+  border-top: 16rpx solid #9e2731;
+  border-left: 20rpx solid transparent;
+}
+
+.triangle-topleft {
+  width: 0;
+  height: 0;
+  border-top: 16rpx solid #9e2731;
+  border-right: 20rpx solid transparent;
+}

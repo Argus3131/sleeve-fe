@@ -39,21 +39,23 @@ Page({
     const scollersE = await Theme.getLocationE('t-2')
     const themeF = themes['locationF']
     const bannerG = await Banner.getLocationG()
+    const themeH = themes['locationH']
     const skuLatest = await WaterFlow.getSkuLatest()
     const items_arr = this.processData_SkuLatest(skuLatest.items)
     // 提取出获取数据的 init方法避免多次setData
     //.slice(0,2)
-    const arr = bannerG.items
-    // console.log(arr)
+    const selling_arr = bannerG.items
+    console.log(themeH)
     this.setData({
       themeA: themeA,
       bannerB: bannerB,
       gridC: gridC,
       activityD: activityD,
+      scollersE: scollersE,
       themeF:themeF,
       bannerG:bannerG,
-      scollersE:scollersE,
-      arr:arr,
+      themeH: themeH,
+      arr: selling_arr,
       items: items_arr,
       skuLatest: skuLatest,
     })
@@ -71,6 +73,7 @@ Page({
     let item_arr = []
     for (let j = 0, length = items.length; j < length; j++) {
       let item = {
+        id: items[j].id,
         image: items[j].img,
         title: items[j].title,
         describe: items[j].subtitle,

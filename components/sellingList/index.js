@@ -73,9 +73,8 @@ Component({
         leftHeight
       })
     },
-    //处理点击事件的函数
     onSelling(event) {
-
+      console.log(event)
     }
   }
 })

@@ -13,7 +13,6 @@
   width: 690rpx;
   height: 88rpx;
   margin-top: 40rpx;
-  margin-bottom: 30rpx;
 }
 
 .selling-list {
@@ -22,6 +21,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 20rpx;
+  margin-top: 30rpx;
 }
 
 .left {
@@ -36,6 +36,6 @@
   flex-direction: column;
 }
 
-.right image:nth-child(odd){
-  margin-bottom:6rpx;
-} 
+.right image:nth-child(odd) {
+  margin-bottom: 6rpx;
+}

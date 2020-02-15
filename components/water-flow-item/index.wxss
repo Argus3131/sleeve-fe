@@ -1,5 +1,9 @@
 /* demo.wxss */
 
+.container {
+  width: 100%;
+}
+
 .life-container {
   width: 340rpx !important;
   padding: 0 20rpx 0 0 !important;
@@ -25,6 +29,11 @@
   display: flex;
   flex-direction: column;
 }
+.discount-box {
+  position: absolute;
+  float: left;
+  z-index: 4;
+}
 
 .life-title {
   margin-left: 10rpx !important;
@@ -44,8 +53,8 @@
   flex-wrap: wrap;
 }
 
-.price-container{
- margin-top: 15rpx;
+.price-container {
+  margin-top: 15rpx;
 }
 
 .del-price {

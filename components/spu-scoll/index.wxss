@@ -6,11 +6,8 @@
   justify-content: center;
   align-items: center;
   /* height: 500rpx; */
-    background-color: #fff;
+  background-color: #fff;
 }
-
- 
-
 
 .scroller_img {
   width: 690rpx;
@@ -21,8 +18,10 @@
 .scroller {
   width: 100%;
   white-space: nowrap;
+  overflow: hidden;
   display: flex;
   flex-direction: row;
+  height: 280rpx;
 }
 
 .scoller-item {

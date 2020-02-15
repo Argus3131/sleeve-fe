@@ -1,14 +1,16 @@
 <!-- demo.wxml -->
-<wxs src="../../filter/filter.wxs" module="tools"/>
-<l-card full="{{false}}" type="cover" image="{{data.image}}" title="{{data.title}}" l-class="life-container" l-img-class="{{tools.isHasDisCount(data.delCount)?'life-img2':'life-img1'}}" l-title-class="life-title" bindtap="onProduct">
+<wxs src="../../filter/filter.wxs" module="tools" />
+
+<view class="container">
+  <l-discount class='discount-box' wx:if="{{tools.isHasDisCount(data.delCount)}}" />
+  <l-card full="{{false}}" type="cover" image="{{data.image}}" title="{{data.title}}" l-class="life-container" l-img-class="{{tools.isHasDisCount(data.delCount)?'life-img2':'life-img1'}}" l-title-class="life-title" bindtap="onProduct" data-id="{{data.id}}">
     <view class='life-product-contianer'>
-        
-        <view class='price-container'>
-            <l-price unit="￥" value="{{data.count}}" value-color="#157658" unit-color="#157658" value-size="30" unit-size="30" unit-bold="500" value-bold="500"></l-price>
-            <!-- 157658 -->
-  
-            <l-price wx:if="{{tools.isHasDisCount(data.delCount)}}" l-class="del-price" unit="￥" value="{{data.delCount}}" value-color="#ad0e11" unit-color="#ad0e11" deleted del-color="#666" value-color="#666" unit-color="#666" value-size="24" unit-size="24"></l-price>
-        </view>
-        <view class='art-content'>{{data.describe}}</view>
+      <view class='price-container'>
+        <l-price unit="￥" value="{{data.count}}" value-color="#157658" unit-color="#157658" value-size="30" unit-size="30" unit-bold="500" value-bold="500"></l-price>
+        <!-- 157658 -->
+        <l-price wx:if="{{tools.isHasDisCount(data.delCount)}}" l-class="del-price" unit="￥" value="{{data.delCount}}" value-color="#ad0e11" unit-color="#ad0e11" deleted del-color="#666" value-color="#666" unit-color="#666" value-size="24" unit-size="24"></l-price>
+      </view>
+      <view class='art-content'>{{data.describe}}</view>
     </view>
-</l-card>
+  </l-card>
+</view>

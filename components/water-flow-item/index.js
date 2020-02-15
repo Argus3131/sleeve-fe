@@ -1,11 +1,15 @@
 Component({
   properties: {
-    data:Object
+    data: Object
   },
   data: {},
 
-  attached(){
+  attached() {
     // console.log(this.properties.data)
   },
-  methods: {}
+  methods: {
+    onProduct(event) {
+      console.log(event)
+    }
+  }
 })
