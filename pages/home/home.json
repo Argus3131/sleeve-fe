@@ -5,7 +5,9 @@
     "l-icon": "/miniprogram_npm/lin-ui/icon/index",
     "l-category": "/components/category-grid/index",
     "l-scoll": "/components/spu-scoll/index",
-    "l-selling": "/components/sellingList/index"
+    "l-selling": "/components/sellingList/index",
+    "l-loading": "/miniprogram_npm/lin-ui/loading/index",
+    "l-loadmore": "/miniprogram_npm/lin-ui/loadmore/index"
 
   }
 }

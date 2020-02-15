@@ -6,15 +6,20 @@ import { HTTP } from '../utils/http'
  * @date 2020/2/11 23:31
  */
 class WaterFlow {
-  static url = '/v1/spu/latest'
 
-  static async getSkuLatest () {
+
+  static async getSkuLatest (start_num=0,count_num=5) {
     const res = await HTTP.request({
-      url: WaterFlow.url,
-      // data:{}
+      url: '/v1/spu/latest',
+      data:{
+        start:start_num,
+        count:count_num
+      }
     })
-    return res.data
+    return res
   }
+
+
 }
 
 export { WaterFlow }

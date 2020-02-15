@@ -5,7 +5,7 @@
   <l-discount class='discount-box' wx:if="{{tools.isHasDisCount(data.delCount)}}" />
   <l-card full="{{false}}" type="cover" image="{{data.image}}" title="{{data.title}}" l-class="life-container" l-img-class="{{tools.isHasDisCount(data.delCount)?'life-img2':'life-img1'}}" l-title-class="life-title" bindtap="onProduct" data-id="{{data.id}}">
     <view class='life-product-contianer'>
-      <l-slogan slogan="{{data.tags}}"/>
+      <l-slogan class='slogan' slogan="{{data.tags}}"/>
       <view class='price-container'>
         <l-price unit="￥" value="{{data.count}}" value-color="#157658" unit-color="#157658" value-size="30" unit-size="30" unit-bold="500" value-bold="500"></l-price>
         <!-- 157658 -->

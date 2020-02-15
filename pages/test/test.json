@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "l-loading": "/miniprogram_npm/lin-ui/loading/index",
+    "l-loadmore": "/miniprogram_npm/lin-ui/loadmore/index"
+  }
+}

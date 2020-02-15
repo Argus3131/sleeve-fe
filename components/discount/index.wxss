@@ -26,9 +26,9 @@
   line-height: 4rpx;
   -webkit-writing-mode: vertical-rl;
   writing-mode: vertical-rl;
-  /* line-height: 10rpx; */
+  font-weight: 400;
   font-size: 24rpx;
+  font-family: "SourceHanSansCN-Normal";
   color: #fff;
-  /* margin: 0 auto; */
   z-index: 12;
 }

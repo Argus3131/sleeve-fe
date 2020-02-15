@@ -7,12 +7,12 @@ Component({
     slogan:String
   },
   observers: {
+    // 监视函数 监视是否存在&的需要转换成数组 否则就改成单个字符串数组
     "slogan":function(newVal, oldVal) {
+  
       if (newVal.length >0) {
-        console.log(newVal.indexOf("$") !== -1)
         if(newVal.indexOf("$") !== -1) {
           const _slogan = newVal.split("$")
-          console.log(_slogan)
           this.setData({
             _slogan
           })
