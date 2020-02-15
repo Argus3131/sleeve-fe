@@ -1,8 +1,5 @@
-<!--components/discount/index.wxml-->
-<view class="discount-tag">
-  <view class="discount">折扣</view>
-  <view class="triangle">
-    <view class="triangle-topleft" />
-    <view class="triangle-topright" />
+<view class="container">
+  <view class="inner">
+    <text class="text">折扣</text>
   </view>
 </view>

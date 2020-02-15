@@ -1,39 +1,34 @@
 /* components/discount/index.wxss */
-.discount-tag {
+
+.container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.triangle {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  position: relative;
-}
-
-.discount {
+  justify-content: center;
   width: 40rpx;
-  height: 74rpx;
-  /* margin: 0 auto; */
-  padding-top: 3rpx;
-  text-align: center;
-  line-height: 30rpx;
+  box-sizing: border-box;
+  border-left: 20rpx solid #9e2731;
+  border-right: 20rpx solid #9e2731;
+  border-top: 80rpx solid #9e2731;
+  border-bottom: 20rpx solid transparent;
+  line-height: 30px;
+}
+
+.inner {
+  position: absolute;
+  margin: 0 auto;
+  bottom:1rpx;
+  left: -1rpx;
+}
+
+.text {
+  line-height: 4rpx;
+  -webkit-writing-mode: vertical-rl;
+  writing-mode: vertical-rl;
+  /* line-height: 10rpx; */
   font-size: 24rpx;
   color: #fff;
-  background-color: #9e2731;
-}
-
-.triangle-topright {
-  width: 0;
-  height: 0;
-  border-top: 16rpx solid #9e2731;
-  border-left: 20rpx solid transparent;
-}
-
-.triangle-topleft {
-  width: 0;
-  height: 0;
-  border-top: 16rpx solid #9e2731;
-  border-right: 20rpx solid transparent;
+  /* margin: 0 auto; */
+  z-index: 12;
 }

@@ -13,7 +13,6 @@ class WaterFlow {
       url: WaterFlow.url,
       // data:{}
     })
-    console.log(res.data)
     return res.data
   }
 }

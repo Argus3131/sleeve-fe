@@ -1,0 +1,10 @@
+var isHasDisCount = function (str) {
+  if(str.indexOf("$") !== -1) {
+    return false
+  }
+  return true;
+}
+
+module.exports = {
+  isHasDisCount: isHasDisCount
+};

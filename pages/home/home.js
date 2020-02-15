@@ -4,6 +4,7 @@ import { Banner } from '../../model/banner'
 import { WaterFlow } from '../../model/waterFlow'
 import { Category } from '../../model/category'
 import { Actvity } from '../../model/actvity'
+import { Tag } from '../../model/tag'
 
 Page({
 
@@ -39,13 +40,14 @@ Page({
     const scollersE = await Theme.getLocationE('t-2')
     const themeF = themes['locationF']
     const bannerG = await Banner.getLocationG()
+    const selling_arr = bannerG.items
     const themeH = themes['locationH']
     const skuLatest = await WaterFlow.getSkuLatest()
     const items_arr = this.processData_SkuLatest(skuLatest.items)
     // 提取出获取数据的 init方法避免多次setData
     //.slice(0,2)
-    const selling_arr = bannerG.items
-    console.log(themeH)
+
+    // console.log(tag_alter)
     this.setData({
       themeA: themeA,
       bannerB: bannerB,
@@ -66,19 +68,18 @@ Page({
     }
 
   },
-  /**
-   *   处理sku商品数据转换
-   */
-  processData_SkuLatest (items) {
+
+  processData_SkuLatest (items=[]) {
     let item_arr = []
-    for (let j = 0, length = items.length; j < length; j++) {
+    for (let i = 0, length = items.length; i < length; i++) {
       let item = {
-        id: items[j].id,
-        image: items[j].img,
-        title: items[j].title,
-        describe: items[j].subtitle,
-        count: items[j].price,
-        delCount: items[j].discount_price,
+        id: items[i].id,
+        image: items[i].img,
+        title: items[i].title,
+        describe: items[i].subtitle,
+        count: items[i].price,
+        delCount: items[i].discount_price,
+        tags:items[i].tags
       }
       item_arr.push(item)
 

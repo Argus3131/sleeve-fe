@@ -18,7 +18,7 @@
   <image class="themeH" src="{{themeH.entrance_img}}" />
   <view class="themeI-container">
     <image src="/image/recommand.png" class="themeI" />
-    <l-water-flow generic:l-water-flow-item="l-water-flow-item" column-gap="20rpx" />
+    <l-water-flow generic:l-water-flow-item="l-water-flow-item" column-gap="20rpx" class="water-flow"/>
   </view>
 
 </view>

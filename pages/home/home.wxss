@@ -83,3 +83,7 @@
   height: 70rpx;
   margin-top: 40rpx;
 }
+
+.water-flow {
+  margin-top: 30rpx;
+}
