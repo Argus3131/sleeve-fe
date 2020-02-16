@@ -1,5 +1,5 @@
 <!-- demo.wxml -->
-<wxs src="../../filter/filter.wxs" module="tools" />
+ <wxs src="../../filter/filter.wxs" module="tools" />
 
 <view class="container">
   <l-discount class='discount-box' wx:if="{{tools.isHasDisCount(data.delCount)}}" />
@@ -9,6 +9,7 @@
       <view class='price-container'>
         <l-price unit="￥" value="{{data.count}}" value-color="#157658" unit-color="#157658" value-size="26" unit-size="26" unit-bold="400" value-bold="400" autofix reserve-digit="2"></l-price>
         <!-- 157658 -->
+<!--        {{data.delCount}}-->
         <l-price wx:if="{{tools.isHasDisCount(data.delCount)}}" l-class="del-price" unit="￥" value="{{data.delCount}}" value-color="#ad0e11" unit-color="#ad0e11" deleted del-color="#666" value-color="#666" unit-color="#666" value-size="18" unit-size="18"></l-price>
       </view>
       <view class='art-content'>{{data.describe}}</view>

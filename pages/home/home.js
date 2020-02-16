@@ -162,7 +162,6 @@ Page({
       const items_new = this.processData_SkuLatest(_items_new)
       // 旧数组拼接原来新数组 保证渲染内容是顺次递增的
       const items_arr = this.data.items.concat(items_new)
-      console.log(items_arr)
       this.setData({
         items: items_arr,
         skuLatest: skuLatest,

@@ -36,6 +36,7 @@
 }
 
 .art-content {
+    max-width: 550rpx;
     font-size: 24rpx;
     text-align: justify;
     color: #999;

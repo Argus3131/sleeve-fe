@@ -1,9 +1,13 @@
 var isHasDisCount = function (price) {
-  if(price == null) {
+  if (!price) {
     return false
   }
-  return true;
+  if (price === '') {
+    return false
+  }
+  return true
 }
+
 module.exports = {
   isHasDisCount: isHasDisCount
-};
+}
