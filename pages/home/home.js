@@ -17,6 +17,7 @@ import {
 import {
   Tag
 } from '../../model/tag'
+import { promisic } from '../../miniprogram_npm/lin-ui/utils/util'
 
 Page({
 
@@ -33,19 +34,19 @@ Page({
     start_num: 0,
     loading: false,
     requestStatus_skuLate: true,
-    loading_text:"努力加载中...",
-    loading_show:true
+    loading_text: '努力加载中...',
+    loading_show: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  async onLoad(options) {
+  async onLoad (options) {
     this.initAllData()
 
   },
 
-  async initAllData() {
+  async initAllData () {
     // resolve 的参数作为 await 表达式的运算结果。 ThemeModel.getLocationA_theme()返回的是一个Promise对象
     const themes = await Theme.getThemes()
     // console.log(themes)
@@ -63,12 +64,12 @@ Page({
     const skuLatest_res = await WaterFlow.getSkuLatest()
     console.log(skuLatest_res)
     const skuLatest = skuLatest_res['data']
-
     const items_arr = this.processData_SkuLatest(skuLatest.items)
+    // console.log(items_arr)
     // 提取出获取数据的 init方法避免多次setData
     //.slice(0,2)
 
-    // console.log(tag_alter)
+    // console.log(bannerB.items)
     this.setData({
       themeA: themeA,
       bannerB: bannerB,
@@ -85,14 +86,14 @@ Page({
     this.init_waterFlow()
 
   },
-  init_waterFlow() {
+  init_waterFlow () {
     if (this.data.items !== []) {
       wx.lin.renderWaterFlow(this.data.items, false, () => {
         // console.log('渲染成功')
       })
     }
   },
-  processData_SkuLatest(items = []) {
+  processData_SkuLatest (items) {
     let item_arr = []
     for (let i = 0, length = items.length; i < length; i++) {
       let item = {
@@ -109,7 +110,15 @@ Page({
     }
     return item_arr
   },
-  async onReachBottom(event) {
+
+  async onTapping(event){
+    console.log(event.detail.id)
+    const id = event.detail.id
+    await promisic(wx.navigateTo)({
+      url: `/pages/product/product?id=${id}`
+    })
+  },
+  async onReachBottom (event) {
     let start_num
     // 判断当前请求情况
     if (this.data.requestStatus_skuLate) {
@@ -127,7 +136,6 @@ Page({
       start_num: start_num,
 
     })
-
     const skuLatest_res = await WaterFlow.getSkuLatest(start_num).catch((reason) => {
       if (reason.errMsg) {
         this.setData({
@@ -136,25 +144,25 @@ Page({
         this._unlocked()
       }
     })
-    // ----------------------------
     if (skuLatest_res.statusCode === 200) {
       this.setData({
         // true代表请求成功的
         requestStatus_skuLate: true
       })
     }
-    // 这边特地获取完整的response 需要statusCode和错误信息
+    // #注：获取完整的response 需要statusCode和错误信息
     const skuLatest = skuLatest_res['data']
-    const items_new = skuLatest.items
+    let _items_new = skuLatest.items
     //判断当前的sku_arr是否为空数组
     // 1）特殊场景断网 传递是[] 导致死锁 的处理 这边使用对状态和 断网情况错误信息判断对锁的状态同步进行改变
-    const flag = this._hasMore(items_new)
+    const flag = this._hasMore(_items_new)
     // items_new数组是否为空
     if (flag) {
       this._unlocked()
-      const items_new = this.processData_SkuLatest(items_new)
+      const items_new = this.processData_SkuLatest(_items_new)
       // 旧数组拼接原来新数组 保证渲染内容是顺次递增的
       const items_arr = this.data.items.concat(items_new)
+      console.log(items_arr)
       this.setData({
         items: items_arr,
         skuLatest: skuLatest,
@@ -174,28 +182,24 @@ Page({
       // 加锁 禁止继续发送请求
       this._locked()
     }
-
   },
 
-  onlintap(event) {
-  console.log(event)
-  },
-  _hasMore(arr_skuLatest) {
+  _hasMore (arr_skuLatest) {
     return arr_skuLatest.length !== 0
 
   },
   // 是否在加载中 true
-  _isloading() {
+  _isloading () {
     return this.data.loading === true
   },
 
-  _locked() {
+  _locked () {
     this.setData({
       loading: true
     })
   },
 
-  _unlocked() {
+  _unlocked () {
     this.setData({
       loading: false
     })

@@ -1,7 +1,7 @@
 Component({
   /**
-  * 组件的属性列表
-  */
+   * 组件的属性列表
+   */
   properties: {
     columnGap: {
       type: String,
@@ -10,8 +10,8 @@ Component({
   },
 
   /**
-  * 组件的初始数据
-  */
+   * 组件的初始数据
+   */
   data: {
     data: [],
     leftData: [],
@@ -31,6 +31,12 @@ Component({
    * 组件的方法列表
    */
   methods: {
+
+    onTap(event) {
+      this.triggerEvent('tapping', {
+        id: event.detail.id
+      }, {})
+    },
     _init() {
       wx.lin = wx.lin || {};
       wx.lin.renderWaterFlow = (data = [], refresh = false, success) => {
@@ -39,7 +45,9 @@ Component({
           return false;
         }
         // 绑定data，判断data是否为[]
-        this.setData({ data });
+        this.setData({
+          data
+        });
         if (refresh) {
           this.data.leftData = [];
           this.data.rightData = [];

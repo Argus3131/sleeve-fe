@@ -1,7 +1,12 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/test/test"
+    "pages/product/product"
+    
+    
+    
+
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

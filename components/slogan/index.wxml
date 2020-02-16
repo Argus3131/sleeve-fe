@@ -1,7 +1,7 @@
 <!--components/slogan/index.wxml-->
 <view class="container">
     <block wx:for="{{_slogan}}" wx:key="key" wx:for-item="item">
-        <l-tag shape="square" select="{{select}}" size="mini" type="reading" bg-color="#dcebe6" font-color="#157658" class="tag"  >
+        <l-tag shape="square" size="{{slogan_size}}" type="reading" bg-color="#dcebe6" font-color="#157658" class="tag" l-class="{{tag_content}}">
         {{item}}
         </l-tag>
     </block>

@@ -1,0 +1,88 @@
+/* pages/product/product.wxss */
+
+.spu-card {
+    position: relative;
+}
+
+
+.life-container {
+    position: relative;
+    width: 100% !important;
+    background-color: #fff !important;
+    overflow: hidden;
+}
+
+.life-product-contianer {
+    padding: 0 10rpx;
+    display: flex;
+    flex-direction: column;
+}
+
+.discount-box {
+    position: absolute;
+    float: left;
+    z-index: 4;
+}
+
+.life-title {
+    margin-left: 10rpx !important;
+    font-size: 26rpx !important;
+    font-weight: 500;
+}
+
+.tag {
+    height: 30rpx !important;
+    line-height: 30rpx !important;
+}
+
+.art-content {
+    font-size: 24rpx;
+    text-align: justify;
+    color: #999;
+    margin-top: 30rpx;
+    margin-bottom: 20rpx;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.slogan {
+    margin-top: 5rpx;
+}
+
+.price-container {
+    margin-top: 5rpx;
+    position: relative;
+}
+
+.del-price {
+    margin-left: 10rpx;
+}
+
+.unit {
+  margin-right: 10rpx !important;
+}
+
+.share-container {
+    /* position: relative; */
+    width: 84rpx;
+    position: absolute;
+    right: 15rpx;
+    border-left: 2px dashed #f5f5f5;
+}
+
+.share-place {
+    float: right;
+}
+
+.tag-small {
+  font-family: "SourceHanSansCN-Normal" !important;
+  font-size: 18rpx !important;
+  font-weight: 400 !important;
+  line-height: 1rpx;
+} 
+
+.disCountTag {
+  position: absolute;
+  left: 250rpx;
+  bottom:5.4rpx; 
+}

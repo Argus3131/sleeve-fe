@@ -1,3 +1,0 @@
-<!--pages/test/test.wxml-->
-<text>pages/test/test.wxml</text>
-<l-loadmore show="{{true}}"></l-loadmore>

@@ -4,7 +4,15 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    slogan:String
+    slogan:String,
+    slogan_size:{
+      type:String,
+      value:"mini"
+    },
+    tag_content:{
+      type: String,
+      value: "tag-content"
+    },
   },
   observers: {
     // 监视函数 监视是否存在&的需要转换成数组 否则就改成单个字符串数组

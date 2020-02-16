@@ -1,0 +1,22 @@
+/* components/share/index.wxss */
+.share {
+  position: relative;
+  bottom: 15rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.share .text {
+  color: #157658;
+  font-family: "SourceHanSansCN-Normal";
+  font-size: 20rpx;
+  font-weight: 400;
+  letter-spacing: 2px;
+  position: relative;
+  bottom: 40rpx;
+  width: 25rpx;
+  line-height: 25rpx;
+  -webkit-writing-mode: vertical-rl;
+  writing-mode: vertical-rl;
+}

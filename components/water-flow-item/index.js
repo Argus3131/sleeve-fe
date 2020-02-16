@@ -8,8 +8,8 @@ Component({
     // console.log(this.properties.data)
   },
   methods: {
-    onProduct(event) {
-      console.log(event)
+    onTapping(event) {
+      this.triggerEvent('tapping', {id:event.currentTarget.dataset.id}, {})
     }
   }
 })

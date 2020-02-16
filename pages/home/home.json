@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "l-banner": "/components/banner/index",
     "l-water-flow": "/miniprogram_npm/lin-ui/water-flow/index",
     "l-water-flow-item": "/components/water-flow-item/index",
     "l-icon": "/miniprogram_npm/lin-ui/icon/index",

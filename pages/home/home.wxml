@@ -1,30 +1,21 @@
 <!--pages/home/home.wxml-->
 
 
-<l-loadmore show="{{loading_show}}" type="loading" loading-text="{{loading_text}}" line="{{true}}" >
+<l-loadmore show="{{loading_show}}" type="loading" loading-text="{{loading_text}}" line="{{true}}">
   <view slot="content">
     <view class="container">
       <image class="top-theme" src="{{themeA.entrance_img}}" />
-      <swiper class="banners" indicator-dots="{{true}}" indicator-color indicator-active-color="#157658" interval="4000" circular autoplay>
-        <!-- #157658-->
-        <block wx:for="{{bannerB.items}}" wx:key="index" wx:for-item="item">
-          <swiper-item>
-            <image src="{{item.img}}" class="item" />
-          </swiper-item>
-        </block>
-      </swiper>
+      <l-banner banners="{{bannerB.items}}" />
       <l-category grid="{{gridC}}" />
       <image class="activity" src="{{activityD.entrance_img}}" />
       <l-scoll class="scoll-content" scollers="{{scollersE.spu_list}}" scroller_img="{{scollersE.title_img}}" />
       <image class="themeF" src="{{themeF.entrance_img}}" />
-
       <l-selling class="selling" selling="{{bannerG}}" items="{{arr}}" rightWidth="{{800}}" rightHeight="{{520}}" leftWidth="{{344}}" leftHeight="{{526}}" />
       <image class="themeH" src="{{themeH.entrance_img}}" />
       <view class="themeI-container">
         <image src="/image/recommand.png" class="themeI" />
-        <l-water-flow generic:l-water-flow-item="l-water-flow-item" column-gap="20rpx" class="water-flow" />
+        <l-water-flow generic:l-water-flow-item="l-water-flow-item" column-gap="20rpx" class="water-flow" bind:tapping="onTapping"/>
       </view>
     </view>
   </view>
-
 </l-loadmore>
