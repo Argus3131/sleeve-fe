@@ -23,8 +23,37 @@ class HTTP {
   //   })
   // }
 
-  // 使用async 和 await封装 HTTP请求
-  static async request ({ url, method = 'GET', data}) {
+  /**
+   * 使用async 和 await封装
+   * HTTP请求 返回data数据
+   * @param url
+   * @param method
+   * @param data
+   * @returns {Promise<*>}
+   */
+  static async request ({ url, method = 'GET', data }) {
+    // const res = await promisic(wx.request)({
+    //   url: `${config.apiBaseUrl}${url}`,
+    //   header: {
+    //     'content-type': 'application/json',
+    //     'appkey': config.appkey
+    //   },
+    //   method: method,
+    //   data: data
+    // })
+    const res = await HTTP._request({ url, method, data })
+    return res.data
+  }
+
+  /**
+   *  HTTP请求 返回全部response数据
+   * @param url
+   * @param method
+   * @param data
+   * @returns {Promise<any>}
+   * @private
+   */
+  static async _request ({ url, method = 'GET', data }) {
     return await promisic(wx.request)({
       url: `${config.apiBaseUrl}${url}`,
       header: {
