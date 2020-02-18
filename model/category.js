@@ -7,10 +7,9 @@ import { HTTP } from '../utils/http'
 
 class Category {
   static async getLocationC(){
-    const res = await HTTP.request({
-      url:'/v1/category/grid/all'
+    return await HTTP.request({
+      url: '/v1/category/grid/all'
     })
-    return res.data
   }
 }
 

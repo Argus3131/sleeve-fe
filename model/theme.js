@@ -36,13 +36,13 @@ class Theme {
   async getThemes () {
     // * 亮点就在于这个this.themes = theme 真正的用对象保存 是将属性赋值 给对象
     // * 让对象去将数据状态保存下来
-    const res = await HTTP.request({
+    // this指代这个类的实例
+    this.themes = await HTTP.request({
       url: '/v1/theme/by/names',
       data: {
         names: `${Theme.locations.join(',')}`
       }
     })
-    this.themes = res.data
   }
 
   /**
@@ -72,11 +72,10 @@ class Theme {
    * @param theme_name sku_scoll
    * @returns {Promise<*>}
    */
-  static async getLocationE_withSpu (theme_name) {
-    const res = await HTTP.request({
-      url: `/v1/theme/name/${theme_name}/with_spu`,
+  static getLocationESpu () {
+    return HTTP.request({
+      url: `/v1/theme/name/${locations_map.locationE}/with_spu`,
     })
-    return res.data
   }
 }
 

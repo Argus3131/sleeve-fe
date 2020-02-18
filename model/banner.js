@@ -1,6 +1,4 @@
-import {
-  HTTP
-} from '../utils/http'
+import { HTTP } from '../utils/http'
 
 /**
  * @author: Argus
@@ -13,11 +11,9 @@ class Banner {
    * @returns {Promise<*>}
    */
   static async getLocationB() {
-    const res = await HTTP.request({
+    return await HTTP.request({
       url: '/v1/banner/name/b-1',
     })
-    const banner = res.data
-    return banner
   }
 
   /**
@@ -25,11 +21,9 @@ class Banner {
    * @returns {Promise<*>}
    */
   static async getLocationG() {
-    const res = await HTTP.request({
+    return await HTTP.request({
       url: '/v1/banner/name/b-2',
     })
-    const banner = res.data
-    return banner
   }
 }
 

@@ -7,10 +7,9 @@ import { HTTP } from '../utils/http'
 
 class Activity {
   static async getLocationD () {
-    const res = await HTTP.request({
+    return await HTTP.request({
       url: '/v1/activity/name/a-2',
     })
-    return res.data
   }
 }
 

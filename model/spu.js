@@ -7,10 +7,9 @@ import { HTTP } from '../utils/http'
 
 class Spu {
   static async getSpu (product_id) {
-    const res = await HTTP.request({
+    return await HTTP.request({
       url: `/v1/spu/id/${product_id}/detail`
     })
-    return res.data
   }
 }
 

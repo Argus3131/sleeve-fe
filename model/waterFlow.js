@@ -7,14 +7,13 @@ import { HTTP } from '../utils/http'
  */
 class WaterFlow {
   static async getSkuLatest (start_num=0,count_num=5) {
-    const res = await HTTP.request({
+    return await HTTP._request({
       url: '/v1/spu/latest',
-      data:{
-        start:start_num,
-        count:count_num
+      data: {
+        start: start_num,
+        count: count_num
       }
     })
-    return res
   }
 
 
