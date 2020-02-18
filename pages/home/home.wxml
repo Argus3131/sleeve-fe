@@ -8,7 +8,7 @@
       <l-banner banners="{{bannerB.items}}" />
       <l-category grid="{{gridC}}" />
       <image class="activity" src="{{activityD.entrance_img}}" />
-      <l-scoll class="scoll-content" scollers="{{scollersE.spu_list}}" scroller_img="{{scollersE.title_img}}" />
+      <l-spu-scoll class="scoll-content" scollers="{{scollE_spu_List}}" scroller_img="{{scollersE.title_img}}" />
       <image class="themeF" src="{{themeF.entrance_img}}" />
       <l-selling class="selling" selling="{{bannerG}}" items="{{arr}}" rightWidth="{{800}}" rightHeight="{{520}}" leftWidth="{{344}}" leftHeight="{{526}}" />
       <image class="themeH" src="{{themeH.entrance_img}}" />
