@@ -6,11 +6,9 @@
 import { HTTP } from '../utils/http'
 
 class Category {
-  static url = '/v1/category/grid/all'
-
   static async getLocationC(){
     const res = await HTTP.request({
-      url:Category.url
+      url:'/v1/category/grid/all'
     })
     return res.data
   }

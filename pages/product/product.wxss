@@ -1,62 +1,65 @@
 /* pages/product/product.wxss */
 
-.spu-card {
-    position: relative;
+.container {
+  position: relative;
 }
 
+.spu-card {
+  position: relative;
+}
 
 .life-container {
-    position: relative;
-    width: 100% !important;
-    background-color: #fff !important;
-    overflow: hidden;
+  position: relative;
+  width: 100% !important;
+  background-color: #fff !important;
+  overflow: hidden;
 }
 
 .life-product-contianer {
-    padding: 0 10rpx;
-    display: flex;
-    flex-direction: column;
+  padding: 0 10rpx;
+  display: flex;
+  flex-direction: column;
 }
 
 .discount-box {
-    position: absolute;
-    float: left;
-    z-index: 4;
+  position: absolute;
+  float: left;
+  z-index: 4;
 }
 
 .life-title {
-    margin-left: 10rpx !important;
-    font-size: 26rpx !important;
-    font-weight: 500;
+  margin-left: 10rpx !important;
+  font-size: 26rpx !important;
+  font-weight: 500;
 }
 
 .tag {
-    height: 30rpx !important;
-    line-height: 30rpx !important;
+  height: 30rpx !important;
+  line-height: 30rpx !important;
 }
 
 .art-content {
-    max-width: 550rpx;
-    font-size: 24rpx;
-    text-align: justify;
-    color: #999;
-    margin-top: 30rpx;
-    margin-bottom: 20rpx;
-    display: flex;
-    flex-wrap: wrap;
+  max-width: 550rpx;
+  font-size: 24rpx;
+  text-align: justify;
+  color: #999;
+  margin-top: 30rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .slogan {
-    margin-top: 5rpx;
+  margin-top: 5rpx;
 }
 
 .price-container {
-    margin-top: 5rpx;
-    position: relative;
+  margin-top: 5rpx;
+  position: relative;
 }
 
 .del-price {
-    margin-left: 10rpx;
+  margin-left: 10rpx;
 }
 
 .unit {
@@ -64,15 +67,15 @@
 }
 
 .share-container {
-    /* position: relative; */
-    width: 84rpx;
-    position: absolute;
-    right: 15rpx;
-    border-left: 2px dashed #f5f5f5;
+  /* position: relative; */
+  width: 84rpx;
+  position: absolute;
+  right: 15rpx;
+  border-left: 2px dashed #f5f5f5;
 }
 
 .share-place {
-    float: right;
+  float: right;
 }
 
 .tag-small {
@@ -80,10 +83,29 @@
   font-size: 18rpx !important;
   font-weight: 400 !important;
   line-height: 1rpx;
-} 
+}
 
 .disCountTag {
   position: absolute;
   left: 250rpx;
-  bottom:5.4rpx; 
+  bottom: 5.4rpx;
+}
+
+.cartTab {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+.button {
+  display: inline-block;
+  text-align: center;
+  /* padding: 20rpx 20rpx 20rpx 20rpx; */
+  font-family: "SourceHanSansCN-Normal";
+  font-size: 24rpx;
+  font-weight: 400;
+}
+
+.sku-tab {
+  padding-bottom: 200rpx;
 }

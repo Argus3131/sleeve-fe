@@ -1,4 +1,4 @@
-<!--components/sellingList/index.wxml-->
+<!--components/sellingList/index.wxml 热卖榜单自适应图片arr.length 加载-->
 <view class="container">
   <image src="{{selling.img}}" class="img" />
   <view class="selling-list">

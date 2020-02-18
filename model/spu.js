@@ -6,8 +6,6 @@
 import { HTTP } from '../utils/http'
 
 class Spu {
-  static url = '/v1/spu/id/15/detail'
-
   static async getSpu (product_id) {
     const res = await HTTP.request({
       url: `/v1/spu/id/${product_id}/detail`

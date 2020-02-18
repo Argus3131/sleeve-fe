@@ -12,8 +12,8 @@ import {
   Category
 } from '../../model/category'
 import {
-  Actvity
-} from '../../model/actvity'
+  Activity
+} from '../../model/activity'
 import {
   Tag
 } from '../../model/tag'
@@ -48,21 +48,21 @@ Page({
 
   async initAllData () {
     // resolve 的参数作为 await 表达式的运算结果。 ThemeModel.getLocationA_theme()返回的是一个Promise对象
-    const themes = await Theme.getThemes()
-    // console.log(themes)
-    // todo   写sku spu小结 写瀑布流优化
-    const themeA = themes['locationA']
+    const theme = new Theme()
+    // 初始化数据填充themes [] 让对象去保存数据、状态
+    await theme.getThemes()
+    const themeA = theme.getLocationA()
     const bannerB = await Banner.getLocationB()
     const gridC = await Category.getLocationC()
-    const activityD = await Actvity.getLocationD()
-    const scollersE = await Theme.getLocationE('t-2')
-    const themeF = themes['locationF']
+    const activityD = await Activity.getLocationD()
+    const scollersE = await Theme.getLocationE_withSpu('t-2')
+    const themeF = theme.getLocationF()
     const bannerG = await Banner.getLocationG()
     const selling_arr = bannerG.items
-    const themeH = themes['locationH']
+    const themeH = theme.getLocationH()
     //----------------skuList------------------
     const skuLatest_res = await WaterFlow.getSkuLatest()
-    console.log(skuLatest_res)
+    // console.log(skuLatest_res)
     const skuLatest = skuLatest_res['data']
     const items_arr = this.processData_SkuLatest(skuLatest.items)
     // console.log(items_arr)

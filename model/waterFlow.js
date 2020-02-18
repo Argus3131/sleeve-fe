@@ -6,8 +6,6 @@ import { HTTP } from '../utils/http'
  * @date 2020/2/11 23:31
  */
 class WaterFlow {
-
-
   static async getSkuLatest (start_num=0,count_num=5) {
     const res = await HTTP.request({
       url: '/v1/spu/latest',
