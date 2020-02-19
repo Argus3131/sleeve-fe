@@ -15,7 +15,7 @@
   overflow: hidden;
 }
 
-.life-product-contianer {
+.life-product-container {
   padding: 0 10rpx;
   display: flex;
   flex-direction: column;

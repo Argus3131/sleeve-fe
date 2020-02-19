@@ -3,7 +3,7 @@ import { HTTP } from '../utils/http'
 /**
  * @author: Argus
  * @description Theme业务模型类 封装主题的请求
- * @date 2020/2/11 19:45
+ * @date 2020/2/19 20:45
  *  当 async 函数抛出异常时，Promise 的 reject 方法也会传递这个异常值
  *  当 await 操作符用于等待一个Promise 对象。它只能在异步函数 async function 中使用。
  *  async function 声明用于定义一个返回 AsyncFunction 对象的异步函数。
@@ -12,7 +12,7 @@ import { HTTP } from '../utils/http'
  *  2.如果你返回的不是一个promise，JavaScript也会自动把这个值"包装"成Promise的resolve值
  *
  */
-// 这边考虑了一下还是用js 对象的映射关系管理
+// 这边考虑了一下还是用js 对象的映射去管理
 // 主题在页面中的对应关系
 const locations_map = {
   'locationA': 't-1',
@@ -53,6 +53,7 @@ class Theme {
    *        "name": "t-1",
    *        ...
    *      }
+   *      在数组里面找符合条件的对象 找到了就返回
    * @returns {Promise<void>}
    */
   getLocationA () {
@@ -69,7 +70,6 @@ class Theme {
 
   /**
    * 获取获取单个专题的详情（含Spu数据）：sku_scoll
-   * @param theme_name sku_scoll
    * @returns {Promise<*>}
    */
   static getLocationESpu () {

@@ -21,6 +21,7 @@ Component({
 
   },
   observers: {
+    // 一定要使用监听器 监听数组是否已经存在了否则空数组会报错
     'items': function(newVal, oldVal) {
       // 在 items[] 被赋值改变时候 执行这个函数 
       const length = newVal.length
@@ -47,22 +48,27 @@ Component({
    */
   methods: {
     controlLayOut(length, arr) {
-      const condition = 0
+      let condition = 0
+      // 如果是偶数
       if (length > 0 && length % 2 === 0) {
-        const condition = length / 2
+         // 2 4 6 偶数对半分
+        condition = length / 2
         this.processLeftAndRightArr(length, arr, condition)
       } else {
-        const condition = (length - 1) / 2
+        // 1 3 5 7 奇数 左边比右边少1个 即 整除下来得到的商 (不是%) 5/2 = 2..1
+        condition = (length - 1) / 2
         this.processLeftAndRightArr(length, arr, condition)
       }
     },
-    // 处理Arr 将传递的arr 分割成2个左右数组
+    // 处理Arr 将传递的arr 分割成2个左、右数组
     processLeftAndRightArr(length, arr, condition) {
-      const right = arr.slice(condition, length)
+      // 数组截取
       const left = arr.slice(0, condition)
-      const rightWidth = this.properties.rightWidth / right.length
+      const right = arr.slice(condition, length)
+      // 将父组件传递 赋值得到的子图宽高进行处理 需要考虑数组内部元素个数arr.length进行均分  / right.length  / left.length 宽不用除 竖向排列
+      const rightWidth = this.properties.rightWidth
       const rightHeight = this.properties.rightHeight / right.length
-      const leftWidth = this.properties.leftWidth / left.length
+      const leftWidth = this.properties.leftWidth
       const leftHeight = this.properties.leftHeight / left.length
       this.setData({
         right,

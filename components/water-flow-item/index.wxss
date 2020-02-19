@@ -1,5 +1,5 @@
 /* demo.wxss */
-
+@import '../../wxss/sleeve.wxss';
 .container {
   width: 100%;
   margin-bottom: 20rpx;
@@ -15,17 +15,17 @@
   margin-bottom: 30rpx;
 }
 
-.life-img1 {
+.common-img {
   width: 350rpx !important;
   height: 350rpx !important;
 }
 
-.life-img2 {
+.discount-img {
   width: 350rpx !important;
   height: 480rpx !important;
 }
 
-.life-product-contianer {
+.product-container {
   padding: 0 10rpx;
   display: flex;
   flex-direction: column;
@@ -37,7 +37,7 @@
   z-index: 4;
 }
 
-.life-title {
+.product-title {
   margin-left: 10rpx !important;
   font-size: 26rpx !important;
   font-weight: 500;

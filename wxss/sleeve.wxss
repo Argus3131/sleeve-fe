@@ -1,0 +1,26 @@
+.rect-hover {
+  position: relative;
+  top:3rpx;
+  left: 3rpx;
+  box-shadow:  0px 0px 8px rgba(0, 0, 0, .1) inset
+}
+
+/* hover-class 属性的组件有三个：view、button、navigator。 */
+.opacity-hover {
+  opacity: 0.8;
+  transform: scale(0.85, 0.85);
+  position: relative;
+  /* top: 3rpx;
+  left: 3rpx; */
+  box-shadow: 0px 0px 8px white rgba(0, 0, 0, 0.1) inset;
+}
+
+/* small-hover */
+.opacity-hover2 {
+  opacity: 0.9;
+  transform: scale(0.95, 0.95);
+  position: relative;
+  /* top: 3rpx;
+  left: 3rpx; */
+  box-shadow: 0px 0px 8px white rgba(0, 0, 0, 0.1) inset;
+}

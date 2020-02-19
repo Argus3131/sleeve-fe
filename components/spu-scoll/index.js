@@ -23,6 +23,9 @@ Component({
   methods: {
     onTap(event){
       console.log(event)
+    },
+    onTapItem(event){
+      console.log(event)
     }
   }
 })

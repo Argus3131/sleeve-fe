@@ -6,13 +6,15 @@ import { HTTP } from '../utils/http'
  * @date 2020/2/11 21:53
  */
 class Banner {
+  static locationB = "b-1"
+  static locationG = "b-2"
   /**
    * 顶部banner
    * @returns {Promise<*>}
    */
   static async getLocationB() {
     return await HTTP.request({
-      url: '/v1/banner/name/b-1',
+      url: `/v1/banner/name/${Banner.locationB}`,
     })
   }
 
@@ -22,7 +24,7 @@ class Banner {
    */
   static async getLocationG() {
     return await HTTP.request({
-      url: '/v1/banner/name/b-2',
+      url: `/v1/banner/name/${Banner.locationG}`,
     })
   }
 }

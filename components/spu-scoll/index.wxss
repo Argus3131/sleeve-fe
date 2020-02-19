@@ -1,11 +1,10 @@
 /* components/scoll-area/index.wxss */
-
+@import '../../wxss/sleeve.wxss';
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* height: 500rpx; */
   background-color: #fff;
 }
 
@@ -17,38 +16,51 @@
 
 .scroller {
   width: 100%;
+  flex-direction: row;
   white-space: nowrap;
   overflow: hidden;
   display: flex;
-  flex-direction: row;
-  height: 280rpx;
 }
 
 .scoller-item {
+  /* 借助inline行内特性 来实现一行的布局*/
   display: inline-block;
-  /* width: 200rpx; */
   flex-direction: column;
   align-items: center;
-  margin: 20rpx 0rpx 5rpx 35rpx;
-}
-
-.item-img {
-  width: 160rpx;
-  height: 160rpx;
-  margin-right: 10rpx;
+  margin: 20rpx 10rpx 5rpx 30rpx;
 }
 
 .scoller-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* height: 300rpx; */
+  /* justify-content: center; */
   margin-bottom: 30rpx;
+}
+
+.item-img {
+  width: 160rpx;
+  height: 160rpx;
+  margin-bottom: 20rpx;
 }
 
 .title {
   font-size: 18rpx;
-  max-width: 108rpx;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  /* 配合宽度 */
+  /*max-width: 108rpx;*/
+  /*不换行 ...缩略显示*/
+  /*white-space: nowrap;*/
+  /*text-overflow: ellipsis;*/
+  /*overflow: hidden;*/
+}
+
+.price-value,.unit-value {
+  color: #157658 !important;
+  font-size: 22rpx !important;
+  font-weight: 400 !important;
+}
+
+.unit-value {
+  font-size: 24rpx !important;
+  font-weight: 500 !important;
 }

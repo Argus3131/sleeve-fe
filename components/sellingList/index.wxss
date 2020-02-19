@@ -1,11 +1,11 @@
 /* components/sellingList/index.wxss */
+@import '../../wxss/sleeve.wxss';
 
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* height: 500rpx; */
   background-color: #fff;
 }
 
@@ -19,6 +19,7 @@
   position: relative;
   width: 100%;
   display: flex;
+  /* 关键点 space-between; */
   justify-content: space-between;
   margin-bottom: 20rpx;
   margin-top: 30rpx;
@@ -28,14 +29,12 @@
   float: left;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .right {
   float: right;
   display: flex;
   flex-direction: column;
-}
-
-.right image:nth-child(odd) {
-  margin-bottom: 6rpx;
+  justify-content: space-between;
 }

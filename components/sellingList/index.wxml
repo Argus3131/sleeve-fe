@@ -4,12 +4,18 @@
   <view class="selling-list">
     <view class="left">
       <block wx:for="{{left}}" wx:key="key" wx:for-index="idx" wx:for-item="item">
-        <image class="left-item-{{idx}}" src="{{item.img}}" data-id="{{item.id}}" style="width:{{leftWidth}}rpx;height:{{leftHeight}}rpx;" bindtap="onSelling"/>
+        <view hover-class="rect-hover" hover-stay-time="300">
+          <image class="left-item-{{idx}}" src="{{item.img}}" data-id="{{item.id}}" style="width:{{leftWidth}}rpx;height:{{leftHeight}}rpx;" bindtap="onSelling" />
+        </view>
+
       </block>
     </view>
     <view class="right">
       <block wx:for="{{right}}" wx:key="key" wx:for-index="idx" wx:for-item="item">
-        <image class="right-item-{{idx}}" src="{{item.img}}" data-id="{{item.id}}" style="width:{{rightWidth}}rpx;height:{{rightHeight}}rpx;" bindtap="onSelling"/>
+        <view hover-class="rect-hover" hover-stay-time="500">
+          <image src="{{item.img}}" data-id="{{item.id}}" style="width:{{rightWidth}}rpx;height:{{rightHeight}}rpx;" bindtap="onSelling" />
+        </view>
+
       </block>
     </view>
   </view>

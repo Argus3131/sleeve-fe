@@ -1,10 +1,10 @@
 <!--components/cart-tab/index.wxml-->
 <view class="buy-container">
-  <view class="home" hover-class='home_hover' hover-stay-time="400">
+  <view class="home" hover-class='rect-hover' hover-stay-time="300">
     <image src="/image/home.png" style="width:49rpx;height:49rpx;"></image>
     <text>主页</text>
   </view>
-  <view class="cart"  hover-class='cart_hover' hover-stay-time="400">
+  <view class="cart"  hover-class='rect-hover' hover-stay-time="300">
     <image src="/image/cart.png" style="width:49rpx;height:49rpx;"></image>
     <text>购物车</text>
   </view>
