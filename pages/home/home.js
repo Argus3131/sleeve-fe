@@ -71,10 +71,11 @@ Page({
     const selling_arr = bannerG.items //截取长度为2 测试sellinglist分布 效果.slice(0,2)
     const themeH = theme.getLocationH()
     //----------------skuList------------------
-    const waterFlow = new WaterFlow()
-    const items_arr = await waterFlow.getFirstWaterFlow()
-    waterFlow.init_waterFlow(items_arr)
-    console.log(items_arr)
+    const waterFlow = WaterFlow.getInstance('/v1/spu/latest')
+    const spu_Latest = await waterFlow.getMoreData()
+    console.log(spu_Latest)
+    waterFlow.init_waterFlow(spu_Latest)
+    // console.log(items)
     // const skuLatest = skuLatest_res['data']
     // const items_arr = this.processData_SkuLatest(skuLatest.items)
     // console.log(items_arr)
@@ -83,6 +84,7 @@ Page({
 
     // console.log(bannerB.items)
     this.setData({
+      loading: true,
       themeA: themeA,
       bannerB: bannerB,
       gridC: gridC,
@@ -93,7 +95,7 @@ Page({
       bannerG: bannerG,
       themeH: themeH,
       arr: selling_arr,
-      items: items_arr,
+      spu_Latest: spu_Latest,
     })
 
   },
@@ -107,17 +109,19 @@ Page({
   },
   // 让 onReachBottom 只是专注于页面数据的获取 而不是实现里面的逻辑 让类去封装
   async onReachBottom (event) {
-    const waterFlow = new WaterFlow()
-    const result = await waterFlow.getMoreWaterFlow(this.data.items)
-    if (result === undefined) return
-    if (result !== false) {
-      if (result.length > 0) {
-        this.setData({ items: result })
-        waterFlow.init_waterFlow(result)
-      }
+    this.setData({
+      loading_show: true
+    })
+    const waterFlow = WaterFlow.getInstance('/v1/spu/latest')
+    waterFlow.start = waterFlow.start + waterFlow.count
+    const spu_Latest = await waterFlow.getMoreData()
+    if (spu_Latest) {
+      console.log(spu_Latest)
+      waterFlow.init_waterFlow(spu_Latest)
     } else {
       this.setData({
-        loading_text: '已经到底啦~',
+        loading: false,
+        end_text: '已经到底啦~',
       })
       setTimeout(() => {
         this.setData({
@@ -125,7 +129,30 @@ Page({
         })
       }, 500)
     }
+    // const waterFlow = new WaterFlow('/v1/spu/latest',waterFlow.count+=5,0)
+    // const items = waterFlow.getMoreData()
+    // console.log(items)
   },
+  // async onReachBottom (event) {
+  //   const waterFlow = new WaterFlow()
+  //   const result = await waterFlow.getMoreWaterFlow(this.data.items)
+  //   if (result === undefined) return
+  //   if (result !== false) {
+  //     if (result.length > 0) {
+  //       this.setData({ items: result })
+  //       waterFlow.init_waterFlow(result)
+  //     }
+  //   } else {
+  //     this.setData({
+  //       loading_text: '已经到底啦~',
+  //     })
+  //     setTimeout(() => {
+  //       this.setData({
+  //         loading_show: false
+  //       })
+  //     }, 500)
+  //   }
+  // },
 
   onTapThemeH (event) {
     console.log(event)

@@ -1,7 +1,7 @@
 <!--pages/home/home.wxml-->
 
 
-<l-loadmore show="{{loading_show}}" type="loading" loading-text="{{loading_text}}" line="{{true}}">
+<l-loadmore show="{{loading_show}}" type="{{loading?'loading':'end'}}" loading-text="{{loading_text}}" line="{{true}}" end-text="{{end_text}}">
   <view slot="content">
     <view class="container">
       <image class="top-theme" src="{{themeA.entrance_img}}" />
