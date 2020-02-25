@@ -1,0 +1,5 @@
+.container {
+    padding: 30rpx;
+    /*padding-left: 30rpx;*/
+    background-color: #fff;
+}

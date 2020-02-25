@@ -1,0 +1,18 @@
+<view class="container {{c.statusStyle(cell.status)}}" bind:tap="onTapCell" x="{{x}}" y="{{y}}">
+    <view>{{cell.title}}</view>
+</view>
+
+
+<wxs module="c">
+
+function statusStyle(status) {
+  if ('forbidden' === status) {
+    return 'forbidden'
+  }
+  if ('selected' === status) {
+  return 'selected'
+  }
+}
+
+module.exports.statusStyle = statusStyle
+</wxs>

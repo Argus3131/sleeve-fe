@@ -1,5 +1,5 @@
 <!-- waterFlowItem.wxml -->
-<wxs src="../../filter/filter.wxs" module="tools"/>
+<wxs src="../../filter/price.wxs" module="tools"/>
 
 <view class="container" hover-class="rect-hover" hover-stay-time="400">
     <l-discount class='discount-box' wx:if="{{tools.isHasDisCount(data.discount_price)}}"/>
@@ -9,11 +9,11 @@
         <view class='product-container'>
             <l-slogan class='slogan' slogan="{{data.tags}}"/>
             <view class='price-container'>
-                <l-price unit="￥" value="{{data.price}}" value-color="#157658" unit-color="#157658" value-size="26"
+                <l-price unit="￥" value="{{tools.mainPrice(data.price,data.discount_price).price}}" value-color="#157658"
+                        unit-color="#157658" value-size="26"
                         unit-size="26" unit-bold="400" value-bold="400" autofix reserve-digit="2"></l-price>
-                <!-- 157658 -->
-                <!--        {{data.delCount}}-->
-                <l-price wx:if="{{tools.isHasDisCount(data.discount_price)}}" l-class="del-price" unit="￥" value="{{data.discount_price}}"
+                <l-price wx:if="{{tools.slashPrice(data.price,data.discount_price).display}}" l-class="del-price" unit="￥"
+                        value="{{tools.slashPrice(data.price,data.discount_price).price}}"
                         value-color="#ad0e11" unit-color="#ad0e11" deleted del-color="#666" value-color="#666"
                         unit-color="#666" value-size="18" unit-size="18"></l-price>
             </view>

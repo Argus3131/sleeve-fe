@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "l-realm": "/components/realm/index",
+    "l-cell": "/components/cell/index"
+  }
+}

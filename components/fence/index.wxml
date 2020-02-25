@@ -1,0 +1,9 @@
+<view class="container">
+    <view class="title">{{fence.title}}</view>
+    <view class="fence">
+        <block wx:for="{{fence.cells}}" wx:key="key" wx:for-item="item" wx:for-index="index">
+            <s-cell cell="{{item}}" class="cell" y="{{index}}" x="{{x}}"/>
+        </block>
+    </view>
+    <view class="hr"/>
+</view>

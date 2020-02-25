@@ -1,0 +1,37 @@
+var tool = require('./filter.wxs')
+
+// 判断原价位置 是否显示隐藏
+function mainPrice (original_price, discount_price) {
+  // 判断 折价是否存在 不存在反原价
+  if (!tool.isPriceNull(discount_price)) {
+    return {
+      price: original_price,
+      display: true
+    }
+  } else {
+    return {
+      price: discount_price,
+      display: true
+    }
+  }
+}
+
+// 判断折价位置 是否显示隐藏
+function slashPrice (original_price, discount_price) {
+  if (tool.isPriceNull(discount_price)) {
+    return {
+      price: original_price,
+      display: true
+    }
+  } else {
+    return {
+      price: null,
+      display: false
+    }
+  }
+}
+
+module.exports = {
+  mainPrice: mainPrice,
+  slashPrice: slashPrice
+}

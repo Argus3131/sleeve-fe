@@ -1,0 +1,32 @@
+/*.container {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    padding-left: 30rpx;*/
+/*}*/
+
+.title {
+    color: #555555;
+    font-size: 22rpx;
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+}
+
+.fence {
+    /*使用flex布局消除内部组件的块级特性 形成了Inline的效果 不制定宽度flex-的item就会给一个自适应宽度类似inline*/
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /*保证超过一行时候 自动换行*/
+    flex-wrap: wrap;
+
+}
+.cell {
+    margin-right: 30rpx;
+    margin-bottom: 20rpx;
+}
+
+.hr{
+    width: 690rpx;
+    height: 2rpx;
+    background-color: #E9E9E9;
+}

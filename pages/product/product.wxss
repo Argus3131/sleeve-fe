@@ -28,11 +28,14 @@
 }
 
 .life-title {
-  margin-left: 10rpx !important;
+  /* margin-left: 10rpx !important; */
   font-size: 26rpx !important;
   font-weight: 500;
 }
 
+.life-product-contianer {
+  margin-top: 15rpx
+}
 .tag {
   height: 30rpx !important;
   line-height: 30rpx !important;
@@ -109,3 +112,8 @@
 .sku-tab {
   padding-bottom: 200rpx;
 }
+
+.realm {
+  padding-bottom: 200rpx;
+}
+

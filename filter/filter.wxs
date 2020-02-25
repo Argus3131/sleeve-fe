@@ -1,4 +1,4 @@
-var isHasDisCount = function (price) {
+var isPriceNull = function (price) {
   if (!price) {
     return false
   }
@@ -21,6 +21,6 @@ var returnKey = function(array) {
 
 
 module.exports = {
-  isHasDisCount: isHasDisCount,
+  isPriceNull: isPriceNull,
   returnKey:returnKey
 }

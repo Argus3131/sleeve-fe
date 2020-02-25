@@ -1,25 +1,26 @@
 // pages/home/home.js
 import {
   Theme
-} from '../../model/theme'
+} from '../../models/theme'
 import {
   Banner
-} from '../../model/banner'
+} from '../../models/banner'
 import {
   WaterFlow
-} from '../../model/waterFlow'
+} from '../../models/waterFlow'
 import {
   Category
-} from '../../model/category'
+} from '../../models/category'
 import {
   Activity
-} from '../../model/activity'
+} from '../../models/activity'
 import {
   Tag
-} from '../../model/tag'
+} from '../../models/tag'
 import {
   promisic
 } from '../../miniprogram_npm/lin-ui/utils/util'
+import { Spu } from '../../models/spu'
 
 Page({
 
@@ -66,6 +67,7 @@ Page({
         scollE_spu_List = scollersE['spu_list'].slice(0, 7) //截取长度为8
       }
     }
+    console.log(scollE_spu_List)
     const themeF = theme.getLocationF()
     const bannerG = await Banner.getLocationG()
     const selling_arr = bannerG.items //截取长度为2 测试sellinglist分布 效果.slice(0,2)
@@ -74,15 +76,11 @@ Page({
     const waterFlow = WaterFlow.getInstance('/v1/spu/latest')
     const spu_Latest = await waterFlow.getMoreData()
     console.log(spu_Latest)
-    waterFlow.init_waterFlow(spu_Latest)
-    // console.log(items)
-    // const skuLatest = skuLatest_res['data']
-    // const items_arr = this.processData_SkuLatest(skuLatest.items)
-    // console.log(items_arr)
-    // 提取出获取数据的 init方法避免多次setData
-    //.slice(0,2)
+    // const test = await Spu.getSpuLatest()
+    // console.log(test)
 
-    // console.log(bannerB.items)
+    waterFlow.init_waterFlow(spu_Latest)
+    // 提取出获取数据的 init方法避免多次setData
     this.setData({
       loading: true,
       themeA: themeA,
@@ -95,16 +93,16 @@ Page({
       bannerG: bannerG,
       themeH: themeH,
       arr: selling_arr,
-      spu_Latest: spu_Latest,
+      // spu_Latest: spu_Latest,
     })
 
   },
 
-  async onTapping (event) {
+  onTapping (event) {
     console.log(event.detail.id)
-    const id = event.detail.id
-    await promisic(wx.navigateTo)({
-      url: `/pages/product/product?id=${id}`
+    const pid = event.detail.id
+    wx.navigateTo({
+      url: `/pages/product/product?pid=${pid}`
     })
   },
   // 让 onReachBottom 只是专注于页面数据的获取 而不是实现里面的逻辑 让类去封装
@@ -129,30 +127,8 @@ Page({
         })
       }, 500)
     }
-    // const waterFlow = new WaterFlow('/v1/spu/latest',waterFlow.count+=5,0)
-    // const items = waterFlow.getMoreData()
-    // console.log(items)
+
   },
-  // async onReachBottom (event) {
-  //   const waterFlow = new WaterFlow()
-  //   const result = await waterFlow.getMoreWaterFlow(this.data.items)
-  //   if (result === undefined) return
-  //   if (result !== false) {
-  //     if (result.length > 0) {
-  //       this.setData({ items: result })
-  //       waterFlow.init_waterFlow(result)
-  //     }
-  //   } else {
-  //     this.setData({
-  //       loading_text: '已经到底啦~',
-  //     })
-  //     setTimeout(() => {
-  //       this.setData({
-  //         loading_show: false
-  //       })
-  //     }, 500)
-  //   }
-  // },
 
   onTapThemeH (event) {
     console.log(event)

@@ -14,6 +14,7 @@
       <image class="themeH" src="{{themeH.entrance_img}}" bind:tap="onTapThemeH"/>
       <view class="themeI-container">
         <image src="/image/recommand.png" class="themeI" />
+<!--      l-water-flow-item-->
         <l-water-flow generic:l-water-flow-item="l-water-flow-item" column-gap="20rpx" class="water-flow" bind:tapping="onTapping"/>
       </view>
     </view>

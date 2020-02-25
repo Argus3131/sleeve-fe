@@ -2,7 +2,9 @@ Component({
   properties: {
     data: Object
   },
-  data: {},
+  data: {
+    
+  },
 
   attached() {
     // console.log(this.properties.data)

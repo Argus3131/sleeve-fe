@@ -10,6 +10,8 @@
     "l-discount": "/components/discount/index",
     "l-tag": "/miniprogram_npm/lin-ui/tag/index",
     "l-cart-tab": "/components/cart-tab/index",
-    "l-sku-tab": "/components/sku-tab/index"
+    "l-sku-tab": "/components/sku-tab/index",
+    "s-realm": "/components/realm/index",
+    "s-cell": "/components/cell/index"
   }
 }

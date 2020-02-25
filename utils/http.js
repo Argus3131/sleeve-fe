@@ -32,16 +32,16 @@ class HTTP {
    * @returns {Promise<*>}
    */
   static async request ({ url, method = 'GET', data }) {
-    // const res = await promisic(wx.request)({
-    //   url: `${config.apiBaseUrl}${url}`,
-    //   header: {
-    //     'content-type': 'application/json',
-    //     'appkey': config.appkey
-    //   },
-    //   method: method,
-    //   data: data
-    // })
-    const res = await HTTP._request({ url, method, data })
+    const res = await promisic(wx.request)({
+      url: `${config.apiBaseUrl}${url}`,
+      header: {
+        'content-type': 'application/json',
+        'appkey': config.appkey
+      },
+      method: method,
+      data: data
+    })
+    // const res = await HTTP._request({ url, method, data })
     return res.data
   }
 

@@ -1,0 +1,62 @@
+/* components/sku-tab/index.wxss */
+
+.sku-container{
+  width: 100%;
+  height: 926rpx;
+  background: #fff;
+  padding-bottom: 100rpx;
+}
+
+.life-title {
+  /* margin-left: 10rpx !important; */
+  font-size: 28rpx !important;
+  font-weight: 600;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.price1, .price2 {
+  margin-right: 20rpx;
+}
+
+.stock {
+  color: #e1251b;
+  font-family: "SourceHanSansCN-Normal";
+  font-size: 18rpx;
+  font-weight: 400;
+}
+
+.specification {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  color: #999;
+  font-family: "SourceHanSansCN-Normal";
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.specification .content {
+  color: #333;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.sku-spec {
+  width: 690rpx;
+  margin-top: 50rpx;
+  max-width: 710rpx;
+  border-bottom: 1px solid #999;
+}
+
+.sku-spec-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+

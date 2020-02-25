@@ -30,9 +30,10 @@ class WaterFlow {
     return this.instance
   }
 
-  async getSpuLatest (url, count, start) {
+  async getSpuLatest (url, count, start, method = 'GET') {
     return await HTTP._request({
       url: url,
+      method: method,
       data: {
         start: start,
         count: count
@@ -48,7 +49,7 @@ class WaterFlow {
       if (arr) {
         this.data = arr
       }
-    }else {
+    } else {
       // 这边使用了ES6的新语法 arrOld.push(...arrNew) 优点不会生成一个新对象
       this.data.push(...arr)
     }
@@ -94,7 +95,6 @@ class WaterFlow {
       this._releaseLocker()
       // 当temp值不为空时
       if (!this.temp) {
-        // 15
         this.temp = this.start
       }
     }

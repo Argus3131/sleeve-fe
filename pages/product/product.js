@@ -4,7 +4,7 @@ import {
 } from '../../utils/common'
 import {
   Spu
-} from '../../model/spu'
+} from '../../models/spu'
 import { promisic } from '../../miniprogram_npm/lin-ui/utils/util'
 
 Page({
@@ -18,21 +18,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad (options) {
-    const id = options.id
-    const flag = isDataEqualsNullAndUndefined(id)
+    const pid = options.pid
+    const flag = isDataEqualsNullAndUndefined(pid)
     // 判空
     if (flag) {
       return
     }
-    const sku_data = await Spu.getSpu(id)
-
+    const sku_data = await Spu.getSpu(pid)
+    // console.log(sku_data)
     const sku_detail_alter = this.processData_skuDetail(sku_data)
-    const sku_specification = this.processData_skuSpecification(sku_data.sku_list)
-    console.log(sku_specification)
+    // const sku_specification = this.processData_skuSpecification(sku_data.sku_list)
+    // console.log(sku_specification)
     this.setData({
       sku_detail: sku_detail_alter,
       sku_data: sku_data,
-      sku_specification: sku_specification,
+      // sku_specification: sku_specification,
     })
   },
 
@@ -70,7 +70,7 @@ Page({
           spec = { key_id: key_id, values_id: values_id }
           sku_list.push(spec)
         } else {
-          let mapping_arr = element["values_id"]
+          let mapping_arr = element['values_id']
           if (mapping_arr) {
             // 遍历得对应的arr就直接加到找到的数组里面
             // {values_id:[45]} => {values_id:[45,42]} 去重判断 isRepeat
@@ -79,7 +79,7 @@ Page({
             if (!flag) {
               mapping_arr.push(item['value_id'])
               //更新数组 因为直接通过遍历得到的对象更新的数组 所以没有重复添加对象
-              element["values_id"] = mapping_arr
+              element['values_id'] = mapping_arr
             }
           }
         }
