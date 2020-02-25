@@ -15,14 +15,21 @@ Component({
         const fenceGroup = new FenceGroup(spu)
         fenceGroup.init()
         // 获取fg_fences的数组
-        const fg_fences = fenceGroup.fences
-        console.log(fg_fences)
+        // const fg_fences = fenceGroup.fences
+        // console.log(fg_fences)
         // 保存fenceGroup对象
         const judger = new Judger(fenceGroup)
         // 赋值data对象
         this.data.judger = judger
         // 获取所有可能结果
         // console.log(judger.pathDict)
+        judger.initDefalutSku()
+        // 获取fg_fences的数组
+        const fg_fences = fenceGroup.fences
+        console.log(fenceGroup.skuList)
+        console.log(judger.skuPending.returnSelectedCellTitle())
+        console.log(judger.skuPending.pending)
+        judger.findDefinedSKU()
 
         this.setData({
           fences: fg_fences
@@ -42,6 +49,7 @@ Component({
       judger.judgeAllStatus(cell, x, y)
       //引用类型 更新data的fences即可
       const fg_fences_alter = judger.fenceGroup.fences
+      console.log(judger.skuPending.returnSelectedCellTitle())
       this.setData({
         fences:fg_fences_alter
       })

@@ -14,11 +14,15 @@ class Cell {
   status
 
 
+
   constructor (spec) {
     this.id = spec.value_id
     this.title = spec.value
     this.status = CellStatus.WAITING
   }
+
+
+
 }
 
 export { Cell }

@@ -11,25 +11,27 @@ class FenceGroup {
   // 保存传入的skuList
   skuList = []
   fences
+  skuResult_martix = []
 
   constructor (spu) {
     this.spu = spu
     this.skuList = spu.sku_list
   }
 
-  init () {
+  init() {
     this._initFences()
   }
 
   _initFences () {
-    const m = []
+    // const m = []
     // 将后端数据 处理成 [[],[],[]]数据格式
     this.skuList.forEach(sku => {
-        m.push(sku.specs)
+        this.skuResult_martix.push(sku.specs)
       }
     )
+    console.log(this.skuResult_martix)
     // 交给这个Matrix去转置矩阵
-    const matrix = this._createMatrix(m)
+    const matrix = this._createMatrix(this.skuResult_martix)
     const matrix_alter = matrix.transpose()
     const fences = []
     matrix_alter.forEach((spec, index) => {
@@ -42,6 +44,34 @@ class FenceGroup {
 
   _createMatrix (matrix) {
     return new Matrix(matrix)
+  }
+
+  /**
+   * 返回给定cell值的具体行号列号
+   */
+  returnCellLocation(cell,key_id) {
+    let x = this.fences.findIndex((fence)=>{
+      return fence.id === key_id
+    })
+    if (x === -1) return
+    let y = this.fences[x].cells.findIndex((item)=>{
+      return item.id === cell.id
+      }
+    )
+    return {
+      x:x,
+      y:y
+    }
+  }
+
+  /**
+   * 返回某组sku规格数据数组
+   * @param x
+   * @returns {*}
+   */
+  returnOneGroupSku (x) {
+    if (x >= this.skuResult_martix.length) return
+    return this.skuResult_martix[x]
   }
 
   /**
@@ -59,6 +89,10 @@ class FenceGroup {
       }
     }
   }
+
+
+
+
 }
 
 export { FenceGroup }

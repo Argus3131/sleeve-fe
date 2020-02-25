@@ -7,6 +7,7 @@ import { SkuCode } from './skuCode'
 import { CellStatus, enums } from '../code/enum'
 import { Joiner } from '../../utils/common'
 import { SkuPending } from './sku-pending'
+import { Cell } from './cell'
 
 /**
  * Judger判断类 里面初始化获取所有存在规格结果集的情况
@@ -28,7 +29,7 @@ class Judger {
   constructor (fenceGroup) {
     this.fenceGroup = fenceGroup
     this._initPathDict()
-    this.skuPending = new SkuPending()
+    this.skuPending = new SkuPending(fenceGroup.fences.length)
   }
 
   _initPathDict () {
@@ -41,10 +42,30 @@ class Judger {
   }
 
   /**
+   * 初始化时候定默认的规格路径
+   */
+  initDefalutSku () {
+    const skus = this.fenceGroup.returnOneGroupSku(1)
+    for (let sku of skus) {
+      const cell = new Cell(sku)
+      const key_id = sku.key_id
+      const location = this.fenceGroup.returnCellLocation(cell, key_id)
+      // console.log(location)
+      // console.log(this.fenceGroup)
+      this.judgeAllStatus(cell, location.x, location.y)
+    }
+  }
+
+  /**
+   *
    * 每当选中一个cell遍历全部 判断潜在路径来
+   *
    * 根据上面的核心规律当前行和其他行的已选cell组成潜在路径是否可选
+   *
    * 依此实现判断是否可选
+   *
    * @param cell
+   *
    * @param x
    * @param y
    */
@@ -84,6 +105,7 @@ class Judger {
         // 说白了就是每次选 出去选中不判断 其他的要么waiting 要么forbidden
         const CellSelectedEqualsCurrentCell = this.skuPending.judgeCellSelectedEqualsCurrentCell(cell, i)
         if (CellSelectedEqualsCurrentCell) {
+          this.skuPending.currentPath= potentialPath
           return
         }
         this.fenceGroup.fences[i].cells[j].status = CellStatus.WAITING
@@ -92,6 +114,22 @@ class Judger {
       }
     })
     // 渲染页面
+  }
+
+  //
+  findDefinedSKU() {
+    const full = this.skuPending.judgePendingFull()
+    if (full) {
+      console.log(this.fenceGroup.spu)
+      const element = this.fenceGroup.skuList.find(element=>{
+        const arr = element.code.split('$')
+        return arr[1] === this.skuPending.currentPath
+      })
+      if (element) {
+        console.log(element.price)
+        console.log(element.discount_price)
+      }
+    }
   }
 
   /**
@@ -169,17 +207,18 @@ class Judger {
       // 更改选中的状态
       this.fenceGroup.fences[x].cells[y].status = CellStatus.SELECTED
       // 保存已经点击的cell值 和行号
-      this.skuPending.insertPending(cell_current, x)
+      this.skuPending.insertPending(this.fenceGroup.fences[x].cells[y], x)
       return
     }
     if (cell_current.status === CellStatus.SELECTED) {
       //  找到对应的cell x y
       //  更改对应的状态
       this.fenceGroup.fences[x].cells[y].status = CellStatus.WAITING
-
       this.skuPending.removeCell(x)
     }
   }
+
+
 }
 
 export { Judger }

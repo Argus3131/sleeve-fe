@@ -31,11 +31,11 @@
           </text>
 
     </view>
-
+    <s-sku-tab/>
     <s-realm spu="{{sku_data}}" class="realm"/>
 
 
-<!--    <l-cart-tab class="cartTab" bind:buytap="onTapping"/>-->
+    <!--    <l-cart-tab class="cartTab" bind:buytap="onTapping"/>-->
 
 
 

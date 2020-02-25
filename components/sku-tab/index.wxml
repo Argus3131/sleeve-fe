@@ -1,5 +1,5 @@
 <!--components/sku-tab/index.wxml-->
-<wxs src="../../filter/filter.wxs" module="tools"/>
+<!--<wxs src="../../filter/filter.wxs" module="tools"/>-->
 
 <view class="sku-container">
 
@@ -18,13 +18,5 @@
         </view>
 
     </l-card>
-<!--    <view class="sku-spec-container">-->
-<!--        <block wx:for="{{sku_specification}}" wx:key="key" wx:for-item="item">-->
-<!--            <view class="sku-spec">-->
-<!--                &lt;!&ndash; 取对象里面的 spec="{{item.key_id}}&ndash;&gt;-->
-<!--                <l-sku-spec property="{{item.values_id}}" spec="{{item.key_id}}" sku_data="{{sku_data}}"/>-->
-<!--            </view>-->
-<!--        </block>-->
 
-<!--    </view>-->
 </view>

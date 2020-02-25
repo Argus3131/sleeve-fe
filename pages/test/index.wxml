@@ -1,3 +1,0 @@
-<view>
-    <l-realm spu="{{spu}}"/>
-</view>
