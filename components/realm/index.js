@@ -83,6 +83,7 @@ Component({
     },
 
     onCellTap (event) {
+      console.log(event)
       const detail = event.detail
       const cell = detail.cell
       const x = detail.x

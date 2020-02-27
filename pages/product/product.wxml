@@ -38,10 +38,11 @@
     </view>
 
 
-
+    <s-realm spu="{{sku_data}}" class="realm" wx:if="{{show}}"/>
 
     <l-cart-tab class="cartTab" bind:buyTap="onTapping" bind:cartTap="onTapping"/>
 
 
-    <s-realm spu="{{sku_data}}" class="realm" wx:if="{{show}}"/>
+  
 </view>
+

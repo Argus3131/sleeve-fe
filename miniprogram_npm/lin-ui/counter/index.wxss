@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: row;
     width: 170rpx;
-    height: 56rpx
+    height: 56rpx;
+    margin-right: 30rpx
 }
 
 .symbol {

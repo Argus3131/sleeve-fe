@@ -11,7 +11,7 @@
         <l-counter count="1" min="1" max="10" class="place" l-symbol-class="symbol" l-disabled-class="disabled"
                 l-count-class="nums"/>
     </view>
-    <view class="hr"/>
+<!--    <view class="hr"/>-->
     <view class="button">
         <l-button size="medium" width="600" height="60" shape="square" bgColor="#fb7299" bind:lintap="ontapBuy" shape="semicircle">立即购买</l-button>
     </view>

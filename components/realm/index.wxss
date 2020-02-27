@@ -1,75 +1,75 @@
-
 container {
-    position: relative;
-    width: 100%;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .skus {
-    padding: 30rpx;
-    background-color: #fff;
+  padding: 30rpx;
+  background-color: #fff;
 }
 
 .counter {
-    height: 60rpx;
-    padding-left: 30rpx;
-    padding-right: 30rpx;
-    width: 100%;
-    background-color: #fff;
-    /*height: 80rpx;*/
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  height: 60rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  width: 100%;
+  background-color: #fff;
+  /* height: 80rpx; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .counter text {
-    padding-left: 30rpx;
-    padding-top: 4rpx;
-    color: #333;
-    font-size: 12px;
-    font-weight: 500;
-
+  padding-top: 4rpx;
+  color: #333;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .place {
-    padding-right: 50rpx;
-    
+  padding-right: 50rpx;
 }
 
 .symbol {
-    width: 40rpx;
-    height: 40rpx;
-    background-color: #fff !important;
-    border: 1px solid #f25d8e !important;
-    border-radius: 50% !important;
-    color: #f25d8e;
+  width: 40rpx;
+  height: 40rpx;
+  background-color: #fff !important;
+  border: 1px solid #f25d8e !important;
+  border-radius: 50% !important;
+  color: #f25d8e;
 }
 
 .nums {
-    line-height: 40rpx !important;
-    background-color: #fff;
+  line-height: 40rpx !important;
+  background-color: #fff;
 }
 
 .disabled {
-    width: 40rpx;
-    height: 40rpx;
-    color: #f3f3f3;
-    background-color: #fff !important;
-    border: 1px solid #f3f3f3 !important;
-    border-radius: 50% !important;
+  width: 40rpx;
+  height: 40rpx;
+  color: #f3f3f3;
+  background-color: #fff !important;
+  border: 1px solid #f3f3f3 !important;
+  border-radius: 50% !important;
 }
 
 .hr {
-    width: 690rpx;
-    height: 2rpx;
-    background-color: #E9E9E9;
+  width: 690rpx;
+  height: 2rpx;
+  background-color: #e9e9e9;
 }
 
 .button {
-    width: 100%;
-    padding: 30rpx;
-    background-color: #fff;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }

@@ -16,7 +16,6 @@
             <view wx:if="{{!isSelectFull}}">
                 <text class="title">{{defalutTitle}}</text>
             </view>
-        {{isSelectFull}}
             <!--        未选满-->
             <view class="content" wx:if="{{isSelectFull}}">
                 <l-price wx:if="{{tools.mainPrice(_sku.price,_sku.discount_price).display}}" unit="￥" value="{{tools.mainPrice(_sku.price,_sku.discount_price).price}}"

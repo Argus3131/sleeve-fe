@@ -7,7 +7,7 @@ Component({
     banners:Array,
     active_dots:{
       type:String,
-      value:"#157658"
+      value:"#ffafc9"
     },
     height:{
       type:String,
