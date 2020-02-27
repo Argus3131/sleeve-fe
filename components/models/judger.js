@@ -103,7 +103,6 @@ class Judger {
     if (!sketchSpecs) return
     this.fenceGroup.returnOneGroupSku(
       (sku, i) => {
-        console.log(sku)
         // 获取cell信息：结果矩阵和当前的skuList的顺序是一一对应的 取规格：颜色
         // 假设取所有的就得在 这里再遍历取i时候的skus 拿到所有cell位置
         const spec = sketchSpecs[i]

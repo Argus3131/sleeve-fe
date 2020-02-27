@@ -24,7 +24,7 @@ Component({
           const isSelectFull = judger.skuPending.judgePendingFull()
           // console.log(judger.skuPending)
           // console.log(priceInterval)
-          // console.log(selectedTitle)
+          console.log(selectedTitle)
           // console.log(isSelectFull)
           // console.log(sku)
           // selectStatus sku selectedTitle specNames priceInterval
@@ -47,8 +47,8 @@ Component({
           const judger = new Judger(fenceGroup)
           // 赋值data对象
           this.data.judger = judger
-          // judger.initDefalutSku()
-          // judger.initSketchSpeC()
+          judger.initDefalutSku()
+          judger.initSketchSpeC()
           // 获取所有可能结果
 
           const priceInterval = fenceGroup.returnSpuPriceInterval()
@@ -56,10 +56,11 @@ Component({
           // console.log(judger.skuPending.currentPath)
           const sku = judger.findDefinedSKU()
           const selectedTitle = judger.skuPending.returnSelectedCellTitle()
+          console.log(selectedTitle)
           const specNames = fenceGroup.fencesNames
-          console.log(specNames)
+          // console.log(specNames)
           const isSelectFull = judger.skuPending.judgePendingFull()
-          console.log(judger.skuPending)
+          // console.log(judger.skuPending)
           // 获取fg_fences的数组
           const fg_fences = fenceGroup.fences
           this.setData({

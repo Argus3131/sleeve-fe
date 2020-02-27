@@ -17,7 +17,6 @@ class SkuPending {
 
   judgePendingFull () {
     if (this.pending.length === 0) return false
-    console.log(this.pending)
     for (let i = 0; i < this.pending.length; i++) {
       // 长度没满的情况
       if (this.pending.length !== this.length) {
@@ -40,11 +39,8 @@ class SkuPending {
    */
   returnSelectedCellTitle () {
     const joiner = new Joiner('，')
-    console.log(this.pending)
     for (let element of this.pending) {
-      console.log(element)
       if (element !== null && element !== undefined) {
-        console.log(element)
         joiner.join(element.title)
       }
     }
