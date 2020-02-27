@@ -1,5 +1,5 @@
 <!--pages/product/product.wxml-->
-<wxs src="../../filter/filter.wxs" module="tools"/>
+<wxs src="../../filter/price.wxs" module="tools"/>
 <view class="container">
     <l-banner banners="{{sku_detail.img}}" height="680"/>
     <l-card full="{{true}}" type="cover" title="{{sku_detail.title}}" l-class="life-container" l-title-class="life-title"
@@ -8,11 +8,15 @@
             <l-slogan class='slogan' slogan="{{sku_detail.tags}}" slogan_size="super-mini" tag_content="tag-small"/>
             <view class='art-content'>{{sku_detail.describe}}</view>
             <view class='price-container'>
-                <l-price unit="￥" value="{{sku_detail.count}}" value-color="#157658" unit-color="#157658" value-size="26"
-                        unit-size="24" unit-bold="400" value-bold="400" autofix reserve-digit="2" l-unit-class="unit"></l-price>
-                <l-price wx:if="{{tools.isHasDisCount(sku_detail.delCount)}}" l-class="del-price" unit="￥" value="{{sku_detail.delCount}}"
-                        value-color="#ad0e11" unit-color="#ad0e11" deleted del-color="#666" value-color="#666"
-                        unit-color="#666" value-size="18" unit-size="18"></l-price>
+                <l-price wx:if="{{tools.mainPrice(sku_detail.count,sku_detail.delCount).display}}" unit="￥" value="{{tools.mainPrice(sku_detail.count,sku_detail.delCount).price}}"
+                        value-color="#f25d8e" unit-color="#f25d8e" value-size="30" unit-size="30"
+                        unit-bold="600" value-bold="600" autofix reserve-digit="2" l-unit-class="unit"></l-price>
+                <l-price wx:if="{{tools.slashPrice(sku_detail.count,sku_detail.delCount).display}}" l-class="del-price"
+                        unit="￥"
+                        value="{{tools.slashPrice(sku_detail.count,sku_detail.delCount).price}}" value-color="#ad0e11"
+                        unit-color="#ad0e11"
+                        deleted
+                        del-color="#666" value-color="#666" unit-color="#666" value-size="20" unit-size="20" class="price2"></l-price>
                 <l-tag wx:if="{{tools.isHasDisCount(sku_detail.delCount)}}" shape="circle" size="super-mini" type="reading"
                         bg-color="#ca0c16" font-color="#fff" class="tag" l-class="tag-small" class="disCountTag">
                 折扣
@@ -26,17 +30,18 @@
     <view>
 
         <text>
+        {{show}}
         做投资，做任何事情，心态都是尤为重要的。在做交易的时候，你是否也有下列心理呢？
 
           </text>
 
     </view>
-    <s-sku-tab/>
-    <s-realm spu="{{sku_data}}" class="realm"/>
-
-
-    <!--    <l-cart-tab class="cartTab" bind:buytap="onTapping"/>-->
 
 
 
+
+    <l-cart-tab class="cartTab" bind:buyTap="onTapping" bind:cartTap="onTapping"/>
+
+
+    <s-realm spu="{{sku_data}}" class="realm" wx:if="{{show}}"/>
 </view>

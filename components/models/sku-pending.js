@@ -8,22 +8,24 @@ import { Joiner } from '../../utils/common'
 class SkuPending {
   //用户每次选中规格值保存到pending数组 并且以行号作为数组index 1对1的查找 每行只能出现一个
   pending = []
-  accumulation = 0
   length
-  currentPath = ""
+  currentPath = ''
 
   constructor (length) {
     this.length = length
   }
 
-  judgePendingFull() {
-    return this.accumulation === this.length
+  judgePendingFull () {
+    if (this.pending.length === 0) return false
+    const flag = this.pending.every(item => {
+      return item !== null && this.pending.length === this.length
+    })
+    console.log(flag)
+    return flag
   }
 
-
-
   /**
-   * 返回已选规格值的title
+   * 返回已选规格值的title 和 code
    */
   returnSelectedCellTitle () {
     const joiner = new Joiner('，')
@@ -41,7 +43,6 @@ class SkuPending {
    */
   insertPending (cell, x) {
     this.pending[x] = cell
-    this.accumulation += 1
   }
 
   /**
@@ -50,7 +51,6 @@ class SkuPending {
    */
   removeCell (x) {
     this.pending[x] = null
-    this.accumulation -= 1
   }
 
   /**

@@ -28,8 +28,39 @@ class Judger {
 
   constructor (fenceGroup) {
     this.fenceGroup = fenceGroup
+    // 无规格商品的处理 直接加入pending点开即可看见 类似默认规格
+    if (this.judgeWithouSku()) {
+      this.skuPending = new SkuPending(this.fenceGroup.spu.sku_list.length)
+      this.withoutSku()
+      return
+    }
     this._initPathDict()
     this.skuPending = new SkuPending(fenceGroup.fences.length)
+  }
+
+  judgeWithouSku () {
+    if (this.fenceGroup.spu.sku_list.length === 1 && this.fenceGroup.spu.sku_list[0].specs.length === 0) {
+      return true
+    }
+    return false
+  }
+  // selectStatus sku selectedTitle specNames priceInterval
+  // selectStatus 点开就叫选中
+  // sku = skupending保存的 那一个
+  // specNames 无
+  // returnSpuPriceInterval
+  withoutSku () {
+    this.skuPending.insertPending(this.fenceGroup.skuList[0],0)
+
+    // _sku.img
+    // _sku.title
+    // _sku.price
+    // _sku.discount_price
+    // selecting
+    // 选中了 skupending里面放数据
+    // interval不变
+    // _sku.stock
+
   }
 
   _initPathDict () {
@@ -43,33 +74,81 @@ class Judger {
 
   /**
    * 初始化时候定默认的规格路径
+   * 这边取结果集的第一组
    */
   initDefalutSku () {
-    const skus = this.fenceGroup.returnOneGroupSku(1)
+    const id = this.fenceGroup.findDefaultSkuIndex()
+    if (id === -1) return
+    // 获取结果集的某组规格
+    const skus = this.fenceGroup.returnOneGroupSpecs(id)
+    console.log(skus)
+    // 转换成cell 后遍历
     for (let sku of skus) {
+      // 记录cell信息
       const cell = new Cell(sku)
       const key_id = sku.key_id
+      // 获取cell位置
       const location = this.fenceGroup.returnCellLocation(cell, key_id)
-      // console.log(location)
-      // console.log(this.fenceGroup)
       this.judgeAllStatus(cell, location.x, location.y)
     }
   }
 
   /**
-   *
+   * 初始化可视规格
+   */
+  initSketchSpeC () {
+    // 获取未转置fences
+    const sketchSpecs = this.getSketchSpec()
+    // console.log(sketchSpecs)
+    if (!sketchSpecs) return
+    this.fenceGroup.returnOneGroupSku(
+      (sku, i) => {
+        console.log(sku)
+        // 获取cell信息：结果矩阵和当前的skuList的顺序是一一对应的 取规格：颜色
+        // 假设取所有的就得在 这里再遍历取i时候的skus 拿到所有cell位置
+        const spec = sketchSpecs[i]
+
+        // console.log(spec)
+        // // 根据信息获取坐标
+        const cell = new Cell(spec)
+        const key_id = spec.key_id
+        // 获取cell位置
+        const location = this.fenceGroup.returnCellLocation(cell, key_id)
+        if (this.fenceGroup.fences[location.x].cells[location.y].img) return
+        this.fenceGroup.fences[location.x].cells[location.y].img = sku.img
+
+      }
+    )
+  }
+
+  /**
+   * 获取可视规格
+   */
+  getSketchSpec () {
+    const sketchSpecId = this.fenceGroup.returnSketchSpecId()
+    if (sketchSpecId === -1) return
+    const sketchSpec = this.fenceGroup.fences.find((ele) => {
+      return sketchSpecId === ele.id
+    })
+    if (!sketchSpec) return
+    return sketchSpec.specs
+  }
+
+  /**
+   * *********主逻辑入口方法*********
    * 每当选中一个cell遍历全部 判断潜在路径来
    *
    * 根据上面的核心规律当前行和其他行的已选cell组成潜在路径是否可选
    *
    * 依此实现判断是否可选
-   *
+   *  这边可以优化一下 累加器已满 且点击禁用就不在判断
    * @param cell
    *
    * @param x
    * @param y
    */
   judgeAllStatus (cell, x, y) {
+    if (this.skuPending.judgePendingFull() && cell.status === CellStatus.FORBIDDEN) return
     this._judgeCurrentCellStatus(cell, x, y)
     this._judgeOtherCellStatus(cell, x, y)
   }
@@ -105,7 +184,7 @@ class Judger {
         // 说白了就是每次选 出去选中不判断 其他的要么waiting 要么forbidden
         const CellSelectedEqualsCurrentCell = this.skuPending.judgeCellSelectedEqualsCurrentCell(cell, i)
         if (CellSelectedEqualsCurrentCell) {
-          this.skuPending.currentPath= potentialPath
+          this.skuPending.currentPath = potentialPath
           return
         }
         this.fenceGroup.fences[i].cells[j].status = CellStatus.WAITING
@@ -116,18 +195,21 @@ class Judger {
     // 渲染页面
   }
 
-  //
-  findDefinedSKU() {
+  /**
+   * 找到用户确定的商品[即规格名全部选择]
+   */
+  findDefinedSKU () {
+    // 选满三个 代表确定一个商品
     const full = this.skuPending.judgePendingFull()
     if (full) {
-      console.log(this.fenceGroup.spu)
-      const element = this.fenceGroup.skuList.find(element=>{
+      // 找到code对应的sku全部信息
+      const element = this.fenceGroup.skuList.find(element => {
         const arr = element.code.split('$')
         return arr[1] === this.skuPending.currentPath
       })
       if (element) {
-        console.log(element.price)
-        console.log(element.discount_price)
+        // console.log(element)
+        return element
       }
     }
   }
@@ -217,7 +299,6 @@ class Judger {
       this.skuPending.removeCell(x)
     }
   }
-
 
 }
 

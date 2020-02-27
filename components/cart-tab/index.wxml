@@ -1,17 +1,15 @@
 <!--components/cart-tab/index.wxml-->
 <view class="buy-container">
   <view class="home" hover-class='rect-hover' hover-stay-time="300">
-    <image src="/image/home.png" style="width:49rpx;height:49rpx;"></image>
-    <text>主页</text>
+    <image src="/image/home.png" style="width:49rpx;height:49rpx;" class="place"></image>
   </view>
   <view class="cart"  hover-class='rect-hover' hover-stay-time="300">
-    <image src="/image/cart.png" style="width:49rpx;height:49rpx;"></image>
-    <text>购物车</text>
+    <image src="/image/cart.png" style="width:49rpx;height:49rpx;" class="place"></image>
   </view>
   <view>
     <view class="buttons">
-      <l-button size="long" width="260" height="100" shape="square" bgColor="#333333" bind:lintap="ontap">加入购物车</l-button>
-      <l-button size="long" width="260" height="100" shape="square" bgColor="#157658" bind:lintap="ontap">立即购买</l-button>
+      <l-button size="medium" width="200" height="60" shape="square" bgColor="#333333" bind:lintap="ontap" shape="semicircle" class="button">加入购物车</l-button>
+      <l-button size="medium" width="200" height="60" shape="square" bgColor="#fb7299" bind:lintap="ontapBuy" shape="semicircle">立即购买</l-button>
     </view>
 
   </view>

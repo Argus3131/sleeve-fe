@@ -62,6 +62,20 @@
 					"pathName": "pages/product/product",
 					"query": "pid=2",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/product/product",
+					"pathName": "pages/product/product",
+					"query": "pid=10",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/product/product",
+					"pathName": "pages/product/product",
+					"query": "pid=14",
+					"scene": null
 				}
 			]
 		}

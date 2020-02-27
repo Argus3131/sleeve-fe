@@ -12,6 +12,8 @@ class Cell {
   title
   // 状态枚举
   status
+  // 头图
+  img
 
 
 
@@ -19,6 +21,7 @@ class Cell {
     this.id = spec.value_id
     this.title = spec.value
     this.status = CellStatus.WAITING
+    this.img = null
   }
 
 

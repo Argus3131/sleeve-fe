@@ -1,14 +1,26 @@
 /* components/share/index.wxss */
+
 .share {
   position: relative;
   bottom: 15rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+}
+
+.button {
+  opacity: 0.7 !important;
+  transition: opacity 1s !important;
+}
+
+.button:hover {
+  color: white !important;
+  opacity: 1 !important;
 }
 
 .share .text {
-  color: #157658;
+  color: #fff;
   font-family: "SourceHanSansCN-Normal";
   font-size: 20rpx;
   font-weight: 400;

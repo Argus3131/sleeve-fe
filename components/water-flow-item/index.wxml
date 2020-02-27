@@ -9,9 +9,9 @@
         <view class='product-container'>
             <l-slogan class='slogan' slogan="{{data.tags}}"/>
             <view class='price-container'>
-                <l-price unit="￥" value="{{tools.mainPrice(data.price,data.discount_price).price}}" value-color="#157658"
-                        unit-color="#157658" value-size="26"
-                        unit-size="26" unit-bold="400" value-bold="400" autofix reserve-digit="2"></l-price>
+                <l-price unit="￥" value="{{tools.mainPrice(data.price,data.discount_price).price}}" value-color="#f25d8e"
+                        unit-color="#f25d8e" value-size="26"
+                        unit-size="26" unit-bold="600" value-bold="600" autofix reserve-digit="2"></l-price>
                 <l-price wx:if="{{tools.slashPrice(data.price,data.discount_price).display}}" l-class="del-price" unit="￥"
                         value="{{tools.slashPrice(data.price,data.discount_price).price}}"
                         value-color="#ad0e11" unit-color="#ad0e11" deleted del-color="#666" value-color="#666"

@@ -1,5 +1,6 @@
 /* components/cart-tab/index.wxss */
 @import '../../wxss/sleeve.wxss';
+
 .buy-container {
   position: relative;
   height: 100rpx;
@@ -10,7 +11,11 @@
   border: solid 1px #f3f3f3;
   background-color: #fff;
   z-index: 99;
-  justify-content: space-between;
+  /* justify-content: space-around; */
+}
+
+.place {
+  margin-left: 30rpx;
 }
 
 .home, .cart {
@@ -19,7 +24,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
 
 /* .home_hover,.cart_hover {
@@ -39,8 +44,13 @@
 }
 
 .buttons {
-  /* position: absolute;
-  right: 0; */
+  float: right;
+  position: relative;
+  left: 100rpx;
   display: flex;
   flex-direction: row;
+}
+
+.button {
+  margin-right: 30rpx;
 }

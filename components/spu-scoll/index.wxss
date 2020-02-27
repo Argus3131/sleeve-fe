@@ -55,12 +55,13 @@
 }
 
 .price-value,.unit-value {
-  color: #157658 !important;
+  color: #f25d8e !important;
   font-size: 22rpx !important;
-  font-weight: 400 !important;
+  font-weight: 600 !important;
+  opacity: 0.6;
 }
 
 .unit-value {
   font-size: 24rpx !important;
-  font-weight: 500 !important;
+  font-weight: 600 !important;
 }

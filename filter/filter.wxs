@@ -8,19 +8,29 @@ var isPriceNull = function (price) {
   return true
 }
 
-
-var returnKey = function(array) {
+var returnKey = function (array) {
   if (array.length > 0) {
-    for (var i = 0; i < array.length;++i) {
+    for (var i = 0; i < array.length; ++i) {
 
     }
-    return i;
+    return i
   }
 }
 
-
+var stock = function (num) {
+  if (num >= 0 && num < 10) {
+    if (num === 0) {
+      return '售罄'
+    }else {
+      return '仅剩：' + num + '件'
+    }
+  } else if (num >= 10) {
+    return '库存：' + num + '件'
+  }
+}
 
 module.exports = {
   isPriceNull: isPriceNull,
-  returnKey:returnKey
+  returnKey: returnKey,
+  stock: stock
 }

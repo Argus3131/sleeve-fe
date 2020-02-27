@@ -53,6 +53,11 @@ class Fence {
   }
 
 
+  getSpecName() {
+    return this.title
+  }
+
+
 }
 
 export {

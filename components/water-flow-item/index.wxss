@@ -1,5 +1,6 @@
 /* demo.wxss */
 @import '../../wxss/sleeve.wxss';
+
 .container {
   width: 100%;
   margin-bottom: 20rpx;
@@ -39,9 +40,13 @@
 
 .product-title {
   margin-left: 10rpx !important;
-  font-size: 26rpx !important;
+  font-size: 28rpx !important;
   font-weight: 500;
 }
+
+/* .product-title:hover {
+  color: #fb7299 !important;
+} */
 
 .tag {
   height: 30rpx !important;

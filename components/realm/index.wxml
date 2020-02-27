@@ -1,6 +1,18 @@
 <view class="container">
-realm
-    <block wx:for="{{fences}}" wx:key="key" wx:for-item="item" wx:for-index="index">
-        <s-fence fence="{{item}}" bind:cellTap="onCellTap" x="{{index}}"/>
-    </block>
+    <s-sku-tab sku="{{sku}}" selectedTitle="{{selectedTitle}}" specNames="{{specNames}}" priceInterval="{{priceInterval}}"
+            isSelectFull="{{isSelectFull}}" defalutImg="{{defalutImg}}" defalutTitle="{{defalutTitle}}"/>
+    <view class="skus" wx:if="{{fences !== undefined}}">
+        <block wx:for="{{fences}}" wx:key="key" wx:for-item="item" wx:for-index="index">
+            <s-fence fence="{{item}}" bind:cellTap="onCellTap" x="{{index}}"/>
+        </block>
+    </view>
+    <view class="counter">
+        <text>数量确认</text>
+        <l-counter count="1" min="1" max="10" class="place" l-symbol-class="symbol" l-disabled-class="disabled"
+                l-count-class="nums"/>
+    </view>
+    <view class="hr"/>
+    <view class="button">
+        <l-button size="medium" width="600" height="60" shape="square" bgColor="#fb7299" bind:lintap="ontapBuy" shape="semicircle">立即购买</l-button>
+    </view>
 </view>

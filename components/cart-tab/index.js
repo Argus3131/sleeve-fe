@@ -19,7 +19,15 @@ Component({
    */
   methods: {
     ontap(event){
-      this.triggerEvent("buytap",{},{})
+      this.triggerEvent("cartTap",{
+        cart:1
+      },{})
+    },
+
+    ontapBuy(event){
+      this.triggerEvent("buyTap",{
+        buy:1
+      },{})
     }
   }
 })

@@ -1,4 +1,5 @@
 <view class="container {{c.statusStyle(cell.status)}}" bind:tap="onTapCell" x="{{x}}" y="{{y}}">
+  <image src="{{cell.img}}" wx:if="{{cell.img !== null}}" class="img"/>
     <view>{{cell.title}}</view>
 </view>
 

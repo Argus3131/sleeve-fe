@@ -1,17 +1,63 @@
 /* components/sku-tab/index.wxss */
 
-.sku-container{
+.sku-container {
   width: 100%;
   background: #fff;
 }
 
-.life-title {
-  /* margin-left: 10rpx !important; */
+.inner {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  background: #fff;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 30rpx;
+  /*padding-right: 30rpx;*/
+}
+
+.name {
+  padding-top: 10rpx;
+  padding-bottom: 30rpx;
+}
+
+.avatar-container {
+  position: relative;
+  bottom: 60rpx;
+  width: 180rpx !important;
+  height: 180rpx !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 2px 2px 2px 1px #999;
+  margin-right: 100rpx;
+}
+
+.avatar {
+  width: 160rpx !important;
+  height: 160rpx !important;
+}
+
+.title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 28rpx !important;
   font-weight: 600;
+  margin-bottom: 30rpx;
 }
 
 .content {
+  margin-right: 50rpx !important;
   display: flex;
   flex-direction: row;
   align-items: baseline;
@@ -22,15 +68,21 @@
 }
 
 .stock {
-  color: #e1251b;
+  color: #999;
   font-family: "SourceHanSansCN-Normal";
-  font-size: 18rpx;
+  font-size: 22rpx;
   font-weight: 400;
+  margin-bottom: 5rpx;
+}
+
+.stock-lack {
+  color: #e1251b;
 }
 
 .specification {
   display: flex;
   flex-direction: row;
+  flex-wrap: nowrap;
   align-items: baseline;
   color: #999;
   font-family: "SourceHanSansCN-Normal";
@@ -44,17 +96,20 @@
   font-weight: 500;
 }
 
-.sku-spec {
-  width: 690rpx;
-  margin-top: 50rpx;
-  max-width: 710rpx;
-  border-bottom: 1px solid #999;
-}
+/*.sku-spec {*/
+
+/*    width: 690rpx;*/
+
+/*    margin-top: 50rpx;*/
+
+/*    max-width: 710rpx;*/
+
+/*    border-bottom: 1px solid #999;*/
+
+/*}*/
 
 .sku-spec-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
-
