@@ -17,11 +17,22 @@ class SkuPending {
 
   judgePendingFull () {
     if (this.pending.length === 0) return false
-    const flag = this.pending.every(item => {
-      return item !== null && this.pending.length === this.length
-    })
-    console.log(flag)
-    return flag
+    console.log(this.pending)
+    for (let i = 0; i < this.pending.length; i++) {
+      // 长度没满的情况
+      if (this.pending.length !== this.length) {
+        return false
+      }
+      // empty的情况
+      if (this.pending[i] === undefined) {
+        return false
+      }
+      // 开了空间没值的情况
+      if (this.pending[i] === null) {
+        return false
+      }
+    }
+    return true
   }
 
   /**
@@ -29,8 +40,11 @@ class SkuPending {
    */
   returnSelectedCellTitle () {
     const joiner = new Joiner('，')
+    console.log(this.pending)
     for (let element of this.pending) {
-      if (element !== null) {
+      console.log(element)
+      if (element !== null && element !== undefined) {
+        console.log(element)
         joiner.join(element.title)
       }
     }

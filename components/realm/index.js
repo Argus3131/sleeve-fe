@@ -63,10 +63,10 @@ Component({
           // 获取fg_fences的数组
           const fg_fences = fenceGroup.fences
           this.setData({
+            sku:sku,
             defalutImg:defalutImg,
             defalutTitle:defalutTitle,
             fences: fg_fences,
-            sku: sku,
             selectedTitle: selectedTitle,
             specNames: specNames,
             priceInterval: priceInterval,
@@ -83,7 +83,6 @@ Component({
     },
 
     onCellTap (event) {
-      console.log(event)
       const detail = event.detail
       const cell = detail.cell
       const x = detail.x
