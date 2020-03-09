@@ -1,0 +1,68 @@
+/* pages/category/category.wxss */
+page {
+    background-color: #ffffff;
+}
+.search-container {
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 20rpx;
+    box-shadow: 1px -1px 1px #e3e3e3;
+    border-top: 1px solid #f5f5f5;
+    border-bottom: 1px solid #f5f5f5;
+}
+.search-btn {
+    background-color: #f1f1f1 !important;
+    color: #c4c9D2 !important;
+    font-size: 24rpx !important;
+    font-weight: 400 !important;
+}
+
+.header {
+    height: 800rpx;
+}
+
+.segment-item {
+    color: #333 !important;
+    font-size: 26rpx !important;
+}
+
+.segment-item-active {
+    color: #fb7299 !important;
+    background-color: #fff !important;
+    font-size: 26rpx !important;
+}
+
+.l-seg-line {
+    width:8rpx !important;
+    height: 40rpx !important;
+    background-color: #fb7299 !important;
+    border-radius: 0 !important;
+}
+
+.category-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.main {
+    border-right: 1px solid #e3e3e3 ;
+}
+
+.right {
+    width: 588rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: flex-start !important;
+}
+
+/*隐藏滚动条*/
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    color: transparent;
+}

@@ -1,6 +1,0 @@
-<l-button width="50" height="120" shape="square" class="button" bg-color="#FB7299" l-class="button">
-  <view class="share">
-    <l-icon name="share" color="#f2f2f2" size="20" />
-    <view class="text">分享</view>
-  </view>
-</l-button>

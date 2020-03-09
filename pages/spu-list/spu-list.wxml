@@ -1,0 +1,4 @@
+<!--pages/spu-list/spu-list.wxml-->
+<!--<view class="container">-->
+<!--    <l-water-flow generic:l-water-flow-item="l-water-flow-item" column-gap="20rpx" class="water-flow" bind:tapping="onTapping"/>-->
+<!--</view>-->

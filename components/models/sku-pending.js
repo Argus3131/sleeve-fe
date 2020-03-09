@@ -10,9 +10,12 @@ class SkuPending {
   pending = []
   length
   currentPath = ''
+  fencesNames = []
+  miss= []
 
-  constructor (length) {
+  constructor (length,fencesNames) {
     this.length = length
+    this.fencesNames = fencesNames
   }
 
   judgePendingFull () {
@@ -53,6 +56,7 @@ class SkuPending {
    */
   insertPending (cell, x) {
     this.pending[x] = cell
+    this.removeMissingSpecKey(x)
   }
 
   /**
@@ -61,6 +65,17 @@ class SkuPending {
    */
   removeCell (x) {
     this.pending[x] = null
+    this.setMissingSpecKeys(x)
+  }
+
+  setMissingSpecKeys(x) {
+    // const miss = []
+    this.miss[x] = this.fencesNames[x]
+    console.log(this.miss)
+  }
+
+  removeMissingSpecKey(x) {
+    this.miss[x] = null
   }
 
   /**
@@ -82,6 +97,54 @@ class SkuPending {
       //  存在并且value_id一致
       return cell_selected.id === cell.id
     }
+  }
+
+  /**
+   * 获取选规格值时候 失去的规格名 miss数组
+   * @returns {string}
+   */
+  getMissSpecKeyStr() {
+    const joiner = new Joiner('，')
+    for (let element of this.miss) {
+      if (element !== null && element !== undefined) {
+        joiner.join(element)
+      }
+    }
+    return joiner.getStr()
+  }
+
+  /**
+   * 获取已选规格值的str
+   * @returns {string}
+   */
+  getCurrentFullSpecValueStr() {
+    // 如果pending数组满了
+    if (this.judgePendingFull()) {
+      // 返回所有规格值的str
+      return this.returnSelectedCellTitle()
+    }
+    else {
+      // 特殊情况 miss 和 pending都为空 因为没有默认规格且没有miss过规格名第一次加载无默认规格的情况
+      // 返回所有规格名的str
+      if (this.pending.length === 0) {
+        return this.getFullSpecValueStr()
+      }
+    }
+  }
+
+  /**
+   * 获取所有规格的值的str
+   * @returns {string}
+   */
+  getFullSpecValueStr() {
+    const joiner = new Joiner('，')
+    for (let element of this.fencesNames) {
+      if (element !== null && element !== undefined) {
+        this.miss.push(element)
+        joiner.join(element)
+      }
+    }
+    return joiner.getStr()
   }
 }
 

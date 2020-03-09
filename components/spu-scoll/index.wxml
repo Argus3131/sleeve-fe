@@ -6,13 +6,12 @@
   <scroll-view scroll-left="true" scroll-x class="scroller">
     <block wx:for="{{scollers}}" wx:key="key" wx:for-item="item">
       <!-- scoller-item display: inline-block; -->
-      <view class="scoller-item" bind:tap="onTapItem">
+      <view class="scoller-item" bind:tap="onTapItem" data-id="{{item.id}}">
         <view class="scoller-inner"  hover-class="opacity-hover2" hover-stay-time="400">
           <image src="{{item.img}}" class="item-img" />
           <text class="title">{{item.title.length>=6?s.substring(item.title,0,6)+"...":item.title}}</text>
           <!-- autofix控制 小数点位数的精度-->
           <l-price unit="￥" value="{{item.price}}" autofix l-value-class="price-value" l-unit-class="unit-value"></l-price>
-
         </view>
       </view>
     </block>

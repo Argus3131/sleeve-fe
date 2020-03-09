@@ -1,0 +1,58 @@
+/* components/counter/index.wxss */
+.counter text {
+    padding-top: 4rpx;
+    color: #333;
+    font-size: 12px;
+    font-weight: 500;
+    /*padding-left: 30rpx*/
+}
+.counter-c {
+    height: 48rpx !important;
+}
+
+.bg {
+    background-color: transparent !important;
+}
+.place {
+    padding-right: 30rpx;
+}
+
+.symbol {
+    width: 40rpx;
+    height: 40rpx;
+    /*background-color: #fff !important;*/
+    border: 1px solid #f25d8e !important;
+    border-radius: 50% !important;
+    color: #f25d8e;
+}
+
+.counter {
+    padding: 30rpx;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.close {
+    width: 30rpx;
+    height: 30rpx;
+}
+
+.hasSku {
+    padding-right: 30rpx;
+    padding-left: 30rpx;
+    height: 60rpx;
+}
+
+.noSku {
+    padding: 30rpx;
+}
+
+.nums {
+  line-height: 48rpx !important;
+  background-color: #fff;
+  min-height: 48rpx !important;
+}

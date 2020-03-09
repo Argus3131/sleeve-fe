@@ -1,21 +1,43 @@
 <view class="container">
-  <s-sku-tab sku="{{sku}}" selectedTitle="{{selectedTitle}}" specNames="{{specNames}}" priceInterval="{{priceInterval}}" isSelectFull="{{isSelectFull}}" defalutImg="{{defalutImg}}" defalutTitle="{{defalutTitle}}" />
-  <view class="line">
-    <view class="hr" />
-  </view>
-  <view class="skus" wx:if="{{fences !== undefined}}">
-    <block wx:for="{{fences}}" wx:key="key" wx:for-item="item" wx:for-index="index">
-      <s-fence fence="{{item}}" bind:cellTap="onCellTap" x="{{index}}" />
-    </block>
-  </view>
-  <view class="counter">
-    <text>数量确认</text>
-    <l-counter count="1" min="1" max="10" class="place" l-symbol-class="symbol" l-disabled-class="disabled" l-count-class="nums" />
-  </view>
-  <view class="line">
-    <view class="hr" />
-  </view>
-  <view class="button">
-    <l-button size="medium" width="600" height="60" shape="square" bgColor="#fb7299" bind:lintap="ontapBuy" shape="semicircle">立即购买</l-button>
-  </view>
+    <s-sku-tab sku="{{sku}}" changeTitle="{{changeTitle}}" hasNoneSku="{{hasNoneSku}}" priceInterval="{{priceInterval}}"
+            isSelectFull="{{isSelectFull}}" defalutImg="{{defalutImg}}" defalutTitle="{{defalutTitle}}" defaultStock="{{defaultStock}}"/>
+<view class="line">
+        <view class="close-c" bindtap="onClose">
+            <image src="/image/close.png" class="close"/>
+        </view>
+        <view class="hr"/>
+    </view>
+
+    <scroll-view class="scroll" scroll-y="true" style="max-height: {{tools.setHeight(hasNoneSku)}}rpx;background-color:#fff;">
+        <view class="skus" wx:if="{{fences !== undefined}}">
+            <block wx:for="{{fences}}" wx:key="key" wx:for-item="item" wx:for-index="index">
+                <s-fence fence="{{item}}" bind:cellTap="onCellTap" x="{{index}}"/>
+            </block>
+        </view>
+    </scroll-view>
+    <s-counter bind:count="onCount"/>
+    <view>{{type_button}}</view>
+    <view class="button" wx:if="{{type_button === 'buy'}}">
+        <l-button size="medium" width="600" height="60" shape="square" bgColor="#fb7299" bind:lintap="ontapBuy" shape="semicircle">立即购买</l-button>
+    </view>
+    <view class="button" wx:if="{{type_button === 'cart'}}">
+        <l-button size="medium" width="600" height="60" shape="square" bgColor="#333333" bind:lintap="ontapCart" shape="semicircle">加入购物车</l-button>
+    </view>
+    <view class="button" wx:if="{{type_button === 'noStock'}}">
+        <l-button disabled="{{true}}" size="medium" width="600" height="60" shape="square" shape="semicircle">暂时无货</l-button>
+    </view>
 </view>
+
+<wxs module="tools">
+function setHeight(hasNoneSku) {
+  if (hasNoneSku) {
+  return 100;
+  }else {
+  return 400;
+  }
+}
+
+module.exports = {
+  setHeight : setHeight,
+}
+</wxs>

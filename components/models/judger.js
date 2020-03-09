@@ -4,7 +4,7 @@
  * @date 2020/2/23 16:00
  */
 import { SkuCode } from './skuCode'
-import { CellStatus, enums } from '../code/enum'
+import { CellStatus } from '../code/enum'
 import { Joiner } from '../../utils/common'
 import { SkuPending } from './sku-pending'
 import { Cell } from './cell'
@@ -24,50 +24,56 @@ import { Cell } from './cell'
 class Judger {
   fenceGroup
   skuPending
+  skuCode
   pathDict = []
 
+  /**
+   *    ***********入口方法*********
+   * 无规格商品的处理 直接加入pending点开即可看见 类似默认规格
+   * @param fenceGroup
+   */
   constructor (fenceGroup) {
     this.fenceGroup = fenceGroup
-    // 无规格商品的处理 直接加入pending点开即可看见 类似默认规格
-    if (this.judgeWithouSku()) {
-      this.skuPending = new SkuPending(this.fenceGroup.spu.sku_list.length)
-      this.withoutSku()
-      return
-    }
+   // 如果是无规格的商品 直接取第一组数据插入pending
+    if (this.judgeWithouSku()) return
+    // 有规格初始化 所有的结果放入[]保存
     this._initPathDict()
-    this.skuPending = new SkuPending(fenceGroup.fences.length)
+    //  记录长度便于后期判断是否选满
+    this.skuPending = new SkuPending(fenceGroup.fences.length,fenceGroup.fencesNames)
   }
 
+  /**
+   * 判断是否无规格
+   * @returns {boolean}
+   */
   judgeWithouSku () {
     if (this.fenceGroup.spu.sku_list.length === 1 && this.fenceGroup.spu.sku_list[0].specs.length === 0) {
+      this.withoutSkuInsertPending()
       return true
     }
     return false
   }
-  // selectStatus sku selectedTitle specNames priceInterval
-  // selectStatus 点开就叫选中
-  // sku = skupending保存的 那一个
-  // specNames 无
-  // returnSpuPriceInterval
-  withoutSku () {
+
+  /**
+   * 无规格处理sku
+   */
+  withoutSkuInsertPending () {
+    this.skuPending = new SkuPending(1)
     this.skuPending.insertPending(this.fenceGroup.skuList[0],0)
-
-    // _sku.img
-    // _sku.title
-    // _sku.price
-    // _sku.discount_price
-    // selecting
-    // 选中了 skupending里面放数据
-    // interval不变
-    // _sku.stock
-
   }
 
+  /**
+   * 初始化 已存在结果数组
+   * @private
+   */
   _initPathDict () {
     this.fenceGroup.spu.sku_list.forEach(spec => {
+      // 处理原始code 返回预期结果数组
       const skuCode = new SkuCode(spec.code)
+      this.skuCode = skuCode
+      // 获取当前迭代的 结果数组
       const segs = skuCode.totalSegments
-      // 是 返回一个新数组 并不会改变原数组 所以要赋值
+      // concat返回一个新数组 并不会改变原数组 所以要赋值
       this.pathDict = this.pathDict.concat(segs)
     })
   }
@@ -81,7 +87,6 @@ class Judger {
     if (id === -1) return
     // 获取结果集的某组规格
     const skus = this.fenceGroup.returnOneGroupSpecs(id)
-    console.log(skus)
     // 转换成cell 后遍历
     for (let sku of skus) {
       // 记录cell信息
@@ -99,15 +104,12 @@ class Judger {
   initSketchSpeC () {
     // 获取未转置fences
     const sketchSpecs = this.getSketchSpec()
-    // console.log(sketchSpecs)
     if (!sketchSpecs) return
     this.fenceGroup.returnOneGroupSku(
       (sku, i) => {
         // 获取cell信息：结果矩阵和当前的skuList的顺序是一一对应的 取规格：颜色
         // 假设取所有的就得在 这里再遍历取i时候的skus 拿到所有cell位置
         const spec = sketchSpecs[i]
-
-        // console.log(spec)
         // // 根据信息获取坐标
         const cell = new Cell(spec)
         const key_id = spec.key_id
@@ -115,13 +117,13 @@ class Judger {
         const location = this.fenceGroup.returnCellLocation(cell, key_id)
         if (this.fenceGroup.fences[location.x].cells[location.y].img) return
         this.fenceGroup.fences[location.x].cells[location.y].img = sku.img
-
       }
     )
   }
 
   /**
    * 获取可视规格
+   * 相同可视规格的key_id 是一样的
    */
   getSketchSpec () {
     const sketchSpecId = this.fenceGroup.returnSketchSpecId()
@@ -153,7 +155,7 @@ class Judger {
   }
 
   /**
-   * 按照往常的方法我们可能选择的解决方案：我获取对象保存的数据 然后在外部进行迭代。
+   * 按照往常的方法我们可能选择的解决方案：获取对象保存的数据 然后在外部进行迭代。
    * 那么反转一下思维 我们从对象定义的方法去拿到我们待处理的数据，将适合该类的行为进行封装
    * 这样提高代码可读性 调用者无须考虑实现 只需考虑拿到数据即可
    * * 好处避免了过多层的循环
@@ -272,14 +274,14 @@ class Judger {
   }
 
   _spliceStr (str1, str2) {
-    // console.log(str1)
-    // console.log(str2)
     return str1 + '-' + str2
   }
 
   /**
    * 当前点击的cell判断状态 并更改状态
-   * @param cell_current
+   * @param cell_current 注意这个cell假如是渲染层返回的cell那不能直接使用
+   *        得获取cell位置后拿到原始cell
+   *        或拿new Cell去保存渲染层传递的数据和状态
    * @param x
    * @param y
    */
@@ -287,7 +289,7 @@ class Judger {
     if (cell_current.status === CellStatus.WAITING) {
       // 更改选中的状态
       this.fenceGroup.fences[x].cells[y].status = CellStatus.SELECTED
-      // 保存已经点击的cell值 和行号
+      // 保存已经点击的cell值 和行号 这边没将cell_current存入pending原因同上
       this.skuPending.insertPending(this.fenceGroup.fences[x].cells[y], x)
       return
     }
@@ -298,6 +300,20 @@ class Judger {
       this.skuPending.removeCell(x)
     }
   }
+
+  /**
+   *  获取当前选满的code码
+   */
+  getFullSku() {
+    const isFull = this.skuPending.judgePendingFull()
+    if (isFull) {
+      return this.skuCode.spuId + "$" + this.skuPending.currentPath
+    }
+    return null
+  }
+
+
+
 
 }
 

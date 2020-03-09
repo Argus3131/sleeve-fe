@@ -5,7 +5,8 @@ import {
 import {
   Spu
 } from '../../models/spu'
-import { promisic } from '../../miniprogram_npm/lin-ui/utils/util'
+import { SalesExplain } from '../../models/salesExplain'
+import { getSystemSize, getWindowHeightRpx } from '../../utils/system'
 
 Page({
 
@@ -13,7 +14,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    show:false
+    show: false
   },
 
   /**
@@ -22,21 +23,24 @@ Page({
   async onLoad (options) {
     const pid = options.pid
     const flag = isDataEqualsNullAndUndefined(pid)
+    const salesExplain = await SalesExplain.getSalesExplain()
+
     // 判空
     if (flag) {
       return
     }
     const sku_data = await Spu.getSpu(pid)
+
     const sku_detail_alter = this.processData_skuDetail(sku_data)
-    console.log(sku_data)
+    const windowHeight = await getWindowHeightRpx()
+    const h = windowHeight -100
     this.setData({
       sku_detail: sku_detail_alter,
       sku_data: sku_data,
-
+      salesExplain:salesExplain,
+      h: h
     })
   },
-
-
 
 
   processData_skuDetail (sku) {
@@ -47,7 +51,7 @@ Page({
       describe: sku.subtitle,
       count: sku.price,
       delCount: sku.discount_price,
-      tags: sku.tags
+      tags: sku.tags,
     }
     return sku_detail
   },
@@ -58,19 +62,40 @@ Page({
     }
     return []
   },
-  out (event) {
-    console.log(event)
-  },
 
   onTapping (event) {
-    console.log(event)
-    this.setData({show:true})
+    const type_button = event.detail.type
+    console.log(type_button)
+    this.setData({
+      show: true,
+      type_button: type_button
+    })
   },
-
+  onClose (event) {
+    const flag = event.detail.show
+    this.setData({ show: flag })
+  },
+  onOpenRealm (event) {
+    this.setData({
+      show: true,
+      type_button: 'cart'
+    })
+  },
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function (res) {
+    return {
+      title: this.data.sku_detail.title + '，您值得拥有~',
+      imageUrl: this.data.sku_detail.img[0]['img']
+    }
+  }, onSpecChange (event) {
+    const specChange = event.detail
+    this.setData({
+      hasNoneSku: specChange.hasNoneSku,
+      changeTitle: specChange.changeTitle,
+      isSelectFull: specChange.isSelectFull
+    })
+  },
 
-  }
 })

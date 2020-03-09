@@ -54,3 +54,7 @@
 .button {
   margin-right: 30rpx;
 }
+
+.badge {
+  background-color:#fb7299 ;
+}

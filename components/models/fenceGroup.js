@@ -45,7 +45,6 @@ class FenceGroup {
       this.fencesNames.push(fence.getSpecName())
     })
     this.fences = fences
-    // this.init_C()
   }
 
   _createMatrix (matrix) {
@@ -96,10 +95,12 @@ class FenceGroup {
    * @returns {{x: number | *, y: number}}
    */
   returnCellLocation (cell, key_id) {
+    // fences 里面拿index
     let x = this.fences.findIndex((fence) => {
       return fence.id === key_id
     })
     if (x === -1) return
+    // cells 里面拿index
     let y = this.fences[x].cells.findIndex((item) => {
         return item.id === cell.id
       }
@@ -182,7 +183,6 @@ class FenceGroup {
    * @param callBack 接受一个回调函数  返回迭代的cell对象
    */
   returnEachCells (callBack) {
-    console.log()
     for (let i = 0; i < this.fences.length; i++) {
       for (let j = 0; j < this.fences[i].cells.length; j++) {
         const element = this.fences[i].cells[j]
@@ -190,6 +190,24 @@ class FenceGroup {
       }
     }
   }
+
+  /**
+   * 找到用户已定单品信息
+   * @param sku 传入单品的code
+   * @returns {null} res=与code对应单品
+   */
+  getDeterminateSku(sku) {
+    let res = null
+    if (sku) {
+      res = this.skuList.find(spec=>{
+        return spec.code === sku
+      })
+    }
+    return res
+  }
+
+
+
 
 }
 

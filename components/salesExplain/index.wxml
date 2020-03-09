@@ -1,0 +1,8 @@
+<!--components/salesExplain/index.wxml-->
+<view class="container">
+    <block wx:for="{{_text}}" wx:key="key" wx:for-item="item">
+        <view class="inner">
+            <text>{{item}}</text>
+        </view>
+    </block>
+</view>

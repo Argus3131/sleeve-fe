@@ -1,0 +1,6 @@
+<!--components/counter/index.wxml-->
+<view class="counter {{dynamic}}">
+    <text>数量确认</text>
+    <l-counter count="{{_count}}" min="{{min}}" max="{{max}}" class="place" l-symbol-class="symbol bg" l-disabled-class="disabled bg"
+            l-count-class="nums bg" l-class="counter-c" bind:linout="onOverRange" bind:lintap="onTapCount" />
+</view>

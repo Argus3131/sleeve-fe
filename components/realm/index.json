@@ -3,7 +3,7 @@
   "usingComponents": {
     "s-sku-tab": "/components/sku-tab/index",
     "s-fence": "/components/fence/index",
-    "l-counter":"/miniprogram_npm/lin-ui/counter/index",
+    "s-counter":"/components/counter/index",
     "l-button": "/miniprogram_npm/lin-ui/button/index"
   }
 }

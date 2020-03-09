@@ -1,0 +1,67 @@
+<!--pages/search/search.wxml-->
+<view>
+  <view class="search-container">
+    <l-search-bar placeholderStyle="font-size: 20rpx !important;" l-icon-class="icon" bg-color="#f1f1f1" placeholder="搜索" shape="circle" show-cancel="{{true}}" l-placeholder-class="holder" l-cancel-class="cancel" bind:lincancel="onCancel" bind:linchange="input"
+      bind:linconfirm="confirm" bind:linfocus="focus" value="{{searchValue}}">
+    </l-search-bar>
+  </view>
+  <view class="tags-container">
+    <view class="tab-container" wx:if="{{!searching}}">
+      <view class="head">
+        <view class="tab" />
+        <text>热门搜索</text>
+      </view>
+      <view class="kwd-container">
+        <block wx:for="{{hot}}" wx:key="key" wx:for-item="item">
+          <l-tag shape="circle" size="mini" select="{{true}}" type="reading" bg-color="{{item.highlight===1?'#ffafc9':'#999'}}" font-color="#fff" class="tags" bind:lintap="tapHot" name="{{item.title}}">{{tools.show(item.title)}}</l-tag>
+        </block>
+      </view>
+    </view>
+    <view class="tab-container" wx:if="{{!searching && _show}}">
+      <view class="head2 history">
+        <view class="tab" />
+        <text>历史搜索</text>
+        <view class="del" bind:tap="clearHistory">
+          <l-icon name="delete" color="#999" size="30" />
+          <text>点击清空搜索历史</text>
+        </view>
+      </view>
+
+      <view class="kwd-container">
+        <block wx:for="{{history}}" wx:key="key" wx:for-item="item">
+          <l-tag shape="circle" size="mini" select="{{true}}" type="reading" bg-color="#999" font-color="#fff" class="tags" bind:lintap="tapHistory" name="{{item}}">{{tools.show(item)}}</l-tag>
+
+        </block>
+
+      </view>
+
+
+    </view>
+
+  </view>
+  <view class="result-container" wx:if="{{searching}}">
+    <view wx:if="{{_result}}">
+      <l-water-flow generic:l-water-flow-item="l-water-flow-item" column-gap="20rpx" class="water-flow" bind:tapping="onTapping" column-gap="10rpx" />
+    </view>
+    <view wx:if="{{!_result}}" class="none-c">
+      <image src="/image/none.jpg" class="none"></image>
+      <text>{{tips}}</text>
+    </view>
+  </view>
+
+</view>
+
+
+<wxs module="tools">
+  var show = function(kwd) {
+    var show = kwd
+    if (kwd.length > 5) {
+      show = kwd.substring(0, 5) + "..."
+    }
+    return show
+  }
+
+  module.exports = {
+    show: show
+  }
+</wxs>

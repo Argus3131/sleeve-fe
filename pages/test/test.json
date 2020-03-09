@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "s-search": "/components/search/index"
+  }
+}

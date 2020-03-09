@@ -25,7 +25,10 @@ Component({
       console.log(event)
     },
     onTapItem(event){
-      console.log(event)
+      const pid = event.currentTarget.dataset.id
+      wx.navigateTo({
+        url: `/pages/product/product?pid=${pid}`
+      })
     }
   }
 })

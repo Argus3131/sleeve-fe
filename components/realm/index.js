@@ -1,77 +1,95 @@
 import { FenceGroup } from '../models/fenceGroup'
 import { Judger } from '../models/judger'
+import { Counter } from '../../models/counter'
+import { Stock } from '../code/enum'
 
 Component({
   properties: {
     spu: Object,
+    type_button: String
   },
   data: {
     judger: null,
+    count: Counter.cartMinNum,
+    kindBtnPreview: null,
+    defaultStock: Stock.DEFAULT_STOCK
   },
   observers: {
+    'type_button':function (type_button) {
+      console.log(type_button)
+    },
     'spu': function (spu) {
-
       if (spu) {
         const hasNoneSku = this.isHasSku(spu)
+        const fenceGroup = new FenceGroup(spu)
         if (hasNoneSku) {
-          console.log("无规格")
-          const fenceGroup = new FenceGroup(spu)
+          // 设置样式
+          this.setCounterCss(hasNoneSku)
           const judger = new Judger(fenceGroup)
-          // console.log(judger.fenceGroup.skuList[0])
+          // 获取 价格区间
           const priceInterval = fenceGroup.returnSpuPriceInterval()
-          const selectedTitle = judger.skuPending.returnSelectedCellTitle()
+          // 无规格商品默认获取pending数组0索引值
           const sku = judger.skuPending.pending[0]
+          // 判断是否 选满 规格组成 单品
           const isSelectFull = judger.skuPending.judgePendingFull()
-          // console.log(judger.skuPending)
-          // console.log(priceInterval)
-          console.log(selectedTitle)
-          // console.log(isSelectFull)
-          // console.log(sku)
-          // selectStatus sku selectedTitle specNames priceInterval
-          // selectStatus 点开就叫选中
-          // sku = skupending保存的 那一个
-          // specNames 无
-          // returnSpuPriceInterval
-            this.setData({
-              sku: sku,
-            selectedTitle: selectedTitle,
+          if (sku.stock >= 0) {
+            this.data.stock = sku.stock
+          }
+          this.judgeHasStock(isSelectFull)
+          this.setData({
+            sku: sku,
             priceInterval: priceInterval,
-            isSelectFull: isSelectFull
+            isSelectFull: isSelectFull,
+            hasNoneSku: hasNoneSku
           })
+          this.returnSpecChangeData(hasNoneSku)
         } else {
-          const fenceGroup = new FenceGroup(spu)
+          this.setCounterCss(!hasNoneSku)
+          // 初始化fencegroup 规格二维矩阵
           fenceGroup.init()
-
+          // 获取未选状态的Img 和 Title
           const defalutImg = fenceGroup.setImg()
           const defalutTitle = fenceGroup.setTitle()
           const judger = new Judger(fenceGroup)
-          // 赋值data对象
-          this.data.judger = judger
+          // 初始化默认规格和可视规格
           judger.initDefalutSku()
           judger.initSketchSpeC()
-          // 获取所有可能结果
-
-          const priceInterval = fenceGroup.returnSpuPriceInterval()
-          // console.log(fenceGroup.fences)
-          // console.log(judger.skuPending.currentPath)
+          // 获取 用户选择的sku 配合 默认选中规格
           const sku = judger.findDefinedSKU()
-          const selectedTitle = judger.skuPending.returnSelectedCellTitle()
-          console.log(selectedTitle)
+          // if (sku) {
+          //   console.log(sku)
+          // }
+          // 赋值data对象 供点击事件共享judger对象保存数据
+          this.data.judger = judger
+          // 获取 价格区间
+          const priceInterval = fenceGroup.returnSpuPriceInterval()
+          // 获取 规格名数组
           const specNames = fenceGroup.fencesNames
-          // console.log(specNames)
+          // 获取 当前规格单品是否确定状态 即选满与否
           const isSelectFull = judger.skuPending.judgePendingFull()
-          // console.log(judger.skuPending)
-          // 获取fg_fences的数组
+          this.judgeHasStock(isSelectFull)
+          // 获取fences的数组 数据绑定渲染
           const fg_fences = fenceGroup.fences
+          const changeTitle = this.changeTitle()
+          const code = judger.getFullSku()
+          if (code) console.log(code)
+          const skuD = judger.fenceGroup.getDeterminateSku(code)
+          if (skuD) {
+            console.log(skuD.stock)
+            this.data.stock = skuD.stock
+          }
+          this.judgeHasStock()
+          this.returnSpecChangeData(hasNoneSku, changeTitle, isSelectFull)
           this.setData({
-            sku:sku,
-            defalutImg:defalutImg,
-            defalutTitle:defalutTitle,
+            sku: sku,
+            defalutImg: defalutImg,
+            defalutTitle: defalutTitle,
             fences: fg_fences,
-            selectedTitle: selectedTitle,
             specNames: specNames,
             priceInterval: priceInterval,
-            isSelectFull: isSelectFull
+            isSelectFull: isSelectFull,
+            changeTitle: changeTitle,
+            hasNoneSku: hasNoneSku
           })
         }
       }
@@ -82,7 +100,17 @@ Component({
     isHasSku (spu) {
       return spu.sku_list.length === 1 && spu.sku_list[0].specs.length === 0
     },
-
+    setCounterCss (hasNoneSku) {
+      if (hasNoneSku) {
+        this.setData({
+          dynamic: 'noSku'
+        })
+      } else {
+        this.setData({
+          dynamic: 'hasSku'
+        })
+      }
+    },
     onCellTap (event) {
       const detail = event.detail
       const cell = detail.cell
@@ -93,18 +121,93 @@ Component({
       judger.judgeAllStatus(cell, x, y)
       //引用类型 更新data的fences即可
       const fg_fences_alter = judger.fenceGroup.fences
-      // console.log(judger.skuPending.returnSelectedCellTitle())
-      // console.log(judger.skuPending.currentPath)
       const sku = judger.findDefinedSKU() === undefined ? null : judger.findDefinedSKU()
       const selectedTitle = judger.skuPending.returnSelectedCellTitle()
-      console.log(selectedTitle)
+      const code = judger.getFullSku()
+      if (code) console.log(code)
+      const skuD = judger.fenceGroup.getDeterminateSku(code)
+      if (skuD) {
+        console.log(skuD.stock)
+        this.data.stock = skuD.stock
+      }
+      // 选择时候要判断
       const isSelectFull = judger.skuPending.judgePendingFull()
+      const changeTitle = this.changeTitle()
+      //判断无货
+      this.judgeHasStock(isSelectFull)
+      // 返回view 提供specChange所需数据
+      this.returnSpecChangeData(this.data.hasNoneSku, changeTitle, isSelectFull)
       this.setData({
         fences: fg_fences_alter,
         sku: sku,
         selectedTitle: selectedTitle,
-        isSelectFull: isSelectFull
+        isSelectFull: isSelectFull,
+        changeTitle: changeTitle
       })
+    },
+    changeTitle () {
+      const skuPending = this.data.judger.skuPending
+      let title = null
+      // 当miss数组不为空 意味着已经进行过选择了意味着初始化过了
+      if (skuPending.getMissSpecKeyStr()) {
+        title = skuPending.getMissSpecKeyStr()
+      } else {
+        title = skuPending.getCurrentFullSpecValueStr()
+      }
+      return title
+    },
+
+    onClose (event) {
+      this.triggerEvent('close', {
+        show: false
+      }, {})
+    },
+    onCount (event) {
+      this.setData({
+        count: event.detail.count
+      })
+      this.judgeHasStock(this.data.isSelectFull)
+    },
+    judgeHasStock (isSelectFull) {
+      if (!this.data.kindBtnPreview) {
+        console.log("judgeHasStock:"+this.properties.type_button)
+        this.data.kindBtnPreview = this.properties.type_button
+      }
+      // 三种缺货状态 选中规格判断规格stock
+      if (isSelectFull) {
+        const stock = this.data.stock
+        const count = this.data.count
+        if (count > stock) {
+          this.setData({ type_button: 'noStock' })
+        } else {
+          console.log("kindBtnPreview"+this.data.kindBtnPreview)
+          this.setData({ type_button: this.data.kindBtnPreview })
+        }
+      } else {
+        const stock = this.data.defaultStock
+        const count = this.data.count
+        if (count > stock) {
+          this.setData({ type_button: 'noStock' })
+        } else {
+          console.log("kindBtnPreview"+this.data.kindBtnPreview)
+          this.setData({ type_button: this.data.kindBtnPreview })
+        }
+      }
+      /**
+       * BUG: 这边一定要清空一次type_button状态的记录否则第二次判断就会直接拿上次打开按钮状态
+       */
+      this.setData({ kindBtnPreview: null })
+    },
+    returnSpecChangeData (hasNoneSku, changeTitle, isSelectFull) {
+      if (hasNoneSku) {
+        changeTitle = null
+        isSelectFull = null
+      }
+      this.triggerEvent('specChange', {
+        hasNoneSku: hasNoneSku,
+        changeTitle: changeTitle,
+        isSelectFull: isSelectFull
+      }, {})
     }
   }
 })

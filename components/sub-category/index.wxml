@@ -1,0 +1,20 @@
+<!--components/sub-catrgory/index.wxml-->
+<view class="container">
+    <image wx:if="{{bannerImg}}" src="{{bannerImg}}" class="banner"/>
+    <text class="tab">- 全部分类 -</text>
+    <view>
+        <!--    需要设置宽度 让组件内部自适应调整位置否则无法计算-->
+        <l-grid l-class="inner-container">
+            <block wx:for="{{categories}}">
+                <l-grid-item wx:key="{{index}}" key="{{item.id}}" slot="{{item.id}}">
+                    <view class="grid-item">
+                        <image mode="aspectFit" src="{{item.img}}" class="img"/>
+                        <text>{{item.name}}</text>
+                    </view>
+                </l-grid-item>
+            </block>
+        </l-grid>
+
+
+    </view>
+</view>

@@ -7,6 +7,7 @@
       <image class="top-theme" src="{{themeA.entrance_img}}" />
       <l-banner banners="{{bannerB.items}}" />
       <l-category grid="{{gridC}}" />
+<!--      <image class="activity" src="/image/delcount4.png" />-->
       <image class="activity" src="{{activityD.entrance_img}}" />
       <l-spu-scoll class="scoll-content" scollers="{{scollE_spu_List}}" scroller_img="{{scollersE.title_img}}" />
       <image class="themeF" src="{{themeF.entrance_img}}" />

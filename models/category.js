@@ -11,6 +11,8 @@ class Category {
       url: '/v1/category/grid/all'
     })
   }
+
+
 }
 
 export { Category }

@@ -7,19 +7,20 @@ Component({
    */
   properties: {
     sku: Object,
-    selectedTitle: String,
-    specNames: Array,
     x: Number,
     priceInterval: Object,
     isSelectFull: Boolean,
-    defalutImg:String,
-    defalutTitle:String
+    defalutImg: String,
+    defalutTitle: String,
+    defaultStock:Number,
+    changeTitle: String,
+    hasNoneSku: Boolean
   },
   observers: {
-    'sku,isSelectFull,selectedTitle,specNames,priceInterval': function (sku,isSelectFull, selectedTitle, specNames, priceInterval) {
-
+    'sku,isSelectFull,changeTitle,hasNoneSku,priceInterval': function (sku, isSelectFull, changeTitle, hasNoneSku, priceInterval) {
+      // console.log(hasNoneSku)
+      this.setTitleCSS()
       if (sku) {
-
         this.setData({
           _sku: sku
         })
@@ -39,41 +40,13 @@ Component({
           }
         }
       }
-      /**
-       * 设置未选规格状态的提示 颜色，图案，尺码
-       */
-      let specNameStr
-      if (specNames.length > 0) {
-        specNameStr = specNames.join('，')
-      }
-      console.log(isSelectFull)
-      const selecting = selectedTitle.length > 0
-      this.setData({ selecting: selecting })
-      // 正在选sku
-      if (selecting) {
-        if (selectedTitle) {
-          console.log(selectedTitle)
-          this.setData({
-            _selectedTitle: selectedTitle
-          })
-        }
-      } else {
-        if (specNameStr) {
-          this.setData({
-            _selectedTitle: specNameStr
-          })
-        }
-
-      }
-
     }
   },
   /**
    * 组件的初始数据
    */
   data: {
-    _sku: null,
-    _selectedTitle: null
+    _sku: null
   },
   attached () {
 
@@ -81,5 +54,17 @@ Component({
   /**
    * 组件的方法列表
    */
-  methods: {}
+  methods: {
+    setTitleCSS () {
+      if (this.properties.hasNoneSku) {
+        this.setData({
+          dynamic: 'noSku'
+        })
+      } else {
+        this.setData({
+          dynamic: 'hasSku'
+        })
+      }
+    }
+  }
 })

@@ -18,15 +18,19 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    ontap(event){
+    onGoToHome(event){},
+    onGoToCart(event){},
+    onAddToCart(event){
+      console.log("触发了cart")
       this.triggerEvent("cartTap",{
-        cart:1
+        type:"cart"
       },{})
     },
 
-    ontapBuy(event){
+    onBuy(event){
+      console.log("触发了buyTap")
       this.triggerEvent("buyTap",{
-        buy:1
+        type:"buy"
       },{})
     }
   }

@@ -9,14 +9,14 @@
         <view class="avatar-container" wx:if="{{!isSelectFull}}">
             <image src="{{defalutImg}}" class="avatar"/>
         </view>
-        <view class="info">
+        <view class="{{dynamic}}">
             <view wx:if="{{isSelectFull}}">
                 <text class="title">{{_sku.title}}</text>
             </view>
-            <view wx:if="{{!isSelectFull}}">
+            <view wx:else>
                 <text class="title">{{defalutTitle}}</text>
             </view>
-            <!--        未选满-->
+<!--        未选满-->
             <view class="content" wx:if="{{isSelectFull}}">
                 <l-price wx:if="{{tools.mainPrice(_sku.price,_sku.discount_price).display}}" unit="￥" value="{{tools.mainPrice(_sku.price,_sku.discount_price).price}}"
                         value-color="#f25d8e" unit-color="#f25d8e" value-size="30" unit-size="30"
@@ -38,18 +38,18 @@
                 <view class="stock" wx:else>库存：{{_sku.stock}}件</view>
             </view>
             <view wx:else>
-                <view class="stock">库存：999件</view>
+                <view class="stock">库存：{{defaultStock}}件</view>
             </view>
             <!--   这边需要正在选的状态而不是选满与否     -->
-            <view class="specification" wx:if="{{selecting}}">
+            <view class="specification" wx:if="{{isSelectFull && !hasNoneSku}}">
                 <!--如果title为空 那么为选择 否则叫已选        -->
                 <text class="title">已选：</text>
-                <text class="content">{{_selectedTitle}}</text>
+                <text class="content">{{changeTitle}}</text>
             </view>
-            <view class="specification" wx:if="{{!selecting}}">
+            <view class="specification" wx:if="{{!isSelectFull && !hasNoneSku}}">
                 <!--如果title为空 那么为选择 否则叫已选        -->
-                <text class="title">选择：</text>
-                <text class="content">{{_selectedTitle}}</text>
+                <text class="title">请选择：</text>
+                <text class="content">{{changeTitle}}</text>
             </view>
         </view>
     </view>

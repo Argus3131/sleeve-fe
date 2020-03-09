@@ -72,7 +72,7 @@ Page({
     const bannerG = await Banner.getLocationG()
     const selling_arr = bannerG.items //截取长度为2 测试sellinglist分布 效果.slice(0,2)
     const themeH = theme.getLocationH()
-    //----------------skuList------------------
+    //----------------spuList------------------
     const waterFlow = WaterFlow.getInstance('/v1/spu/latest')
     const spu_Latest = await waterFlow.getMoreData()
     console.log(spu_Latest)
@@ -105,6 +105,7 @@ Page({
       url: `/pages/product/product?pid=${pid}`
     })
   },
+
   // 让 onReachBottom 只是专注于页面数据的获取 而不是实现里面的逻辑 让类去封装
   async onReachBottom (event) {
     this.setData({

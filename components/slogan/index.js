@@ -13,6 +13,9 @@ Component({
       type: String,
       value: "tag-content"
     },
+    select:{
+      type:Boolean
+    }
   },
   observers: {
     // 监视函数 监视是否存在&的需要转换成数组 否则就改成单个字符串数组

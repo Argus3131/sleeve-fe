@@ -1,6 +1,6 @@
 // 判断字符串是否为空串或 全部是空格 为空返回真
 function isStrEqualsNullOrBlank(str) {
-  if (str == "") return true;
+  if (str == ""||str == '""'||str == "''" || str.length===0) return true;
   var regu = "^[ ]+$";
   var re = new RegExp(regu);
   return re.test(str);

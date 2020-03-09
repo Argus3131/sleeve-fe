@@ -1,6 +1,6 @@
 <!--pages/product/product.wxml-->
 <wxs src="../../filter/price.wxs" module="tools"/>
-<view class="container">
+<scroll-view class="container" scroll-y="true" style="height:{{h}}rpx;">
     <l-banner banners="{{sku_detail.img}}" height="680"/>
     <l-card full="{{true}}" type="cover" title="{{sku_detail.title}}" l-class="life-container" l-title-class="life-title"
             data-id="{{sku_detail.id}}" plaintext="true" class="spu-card">
@@ -24,36 +24,37 @@
             </view>
         </view>
         <view class="share-container">
-            <l-share class="share-place"/>
+            <l-button width="50" height="120" special shape="square" class="button" bg-color="#FB7299" l-class="button"
+                    open-type="share">
+                <view class="share">
+                    <l-icon name="share" color="#fff" size="20"/>
+                    <text class="t1">分</text>
+                    <text class="t2">享</text>
+                </view>
+            </l-button>
         </view>
     </l-card>
-    <view>
-
-        <text>
-        做投资，做任何事情，心态都是尤为重要的。在做交易的时候，你是否也有下列心理呢？
-        做投资，做任何事情，心态都是尤为重要的。在做交易的时候，你是否也有下列心理呢？
-             做投资，做任何事情，心态都是尤为重要的。在做交易的时候，你是否也有下列心理呢？
-        做投资，做任何事情，心态都是尤为重要的。在做交易的时候，你是否也有下列心理呢？     做投资，做任何事情，心态都是尤为重要的。在做交易的时候，你是否也有下列心理呢？
-        做投资，做任何事情，心态都是尤为重要的。在做交易的时候，你是否也有下列心理呢？     做投资，做任何事情，心态都是尤为重要的。在做交易的时候，你是否也有下列心理呢？
-        做投资，做任何事情，心态都是尤为重要的。在做交易的时候，你是否也有下列心理呢？     做投资，做任何事情，心态都是尤为重要的。在做交易的时候，你是否也有下列心理呢？
-        做投资，做任何事情，心态都是尤为重要的。在做交易的时候，你是否也有下列心理呢？     做投资，做任何事情，心态都是尤为重要的。在做交易的时候，你是否也有下列心理呢？
-        做投资，做任何事情，心态都是尤为重要的。在做交易的时候，你是否也有下列心理呢？     做投资，做任何事情，心态都是尤为重要的。在做交易的时候，你是否也有下列心理呢？
-        做投资，做任何事情，心态都是尤为重要的。在做交易的时候，你是否也有下列心理呢？
-
-
-
-
-
-          </text>
-
+    <!--    <view>优惠券</view>-->
+    <view class="spec" wx:if="{{!hasNoneSku}}">
+        <view class="specification" wx:if="{{isSelectFull}}">
+            <text class="title">已选：</text>
+            <text class="content">{{changeTitle}}</text>
+        </view>
+        <view class="specification" wx:if="{{!isSelectFull}}">
+            <text class="title">请选择：</text>
+            <text class="content">{{changeTitle}}</text>
+        </view>
+        <image src="/image/open.png" class="open" bind:tap="onOpenRealm"></image>
     </view>
-
-
-    <s-realm spu="{{sku_data}}" class="realm" wx:if="{{show}}"/>
-
+    <s-explain text="{{salesExplain}}" class="explain"/>
+    <view class="detail-img-container">
+        <block wx:for="{{sku_data.spu_detail_img_list}}" wx:key="key" wx:for-item="item">
+            <image class="detail-img" src="{{item.img}}" mode="widthFix"></image>
+        </block>
+    </view>
+    <l-popup show="{{show}}" content-align="bottom">
+        <s-realm spu="{{sku_data}}" class="realm" bind:close="onClose" type_button="{{type_button}}" bind:specChange="onSpecChange"/>
+    </l-popup>
     <l-cart-tab class="cartTab" bind:buyTap="onTapping" bind:cartTap="onTapping"/>
-
-
-  
-</view>
+</scroll-view>
 
