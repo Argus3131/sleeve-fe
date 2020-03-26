@@ -15,9 +15,9 @@ Component({
     defaultStock: Stock.DEFAULT_STOCK
   },
   observers: {
-    'type_button':function (type_button) {
-      console.log(type_button)
-    },
+    // 'type_button':function (type_button) {
+    //   console.log(type_button)
+    // },
     'spu': function (spu) {
       if (spu) {
         const hasNoneSku = this.isHasSku(spu)

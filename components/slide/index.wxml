@@ -1,0 +1,24 @@
+<!--components/slide/index.wxml-->
+<l-slide-view height="240" width="750" slide-width="340">
+  <view slot="left" class="left">
+    <view class="icon" bind:tap="select">
+      <view wx-if="{{!item.checked}}">
+        <view class='icon_none'></view>
+      </view>
+      <view wx-if="{{item.checked}}">
+        <view class='check'>
+        </view>
+      </view>
+    </view>
+
+    <view class='left-con'>
+      <!-- 绑定当前 SPU对应的 index  {{item}} 而且这个item一旦改变 slide的要同步更新的到全部而items-->
+      <s-slide-item item="{{item}}"></s-slide-item>
+    </view>
+
+  </view>
+  <view slot="right" class="right">
+    <l-button size="long" height="240" width="171" bg-color="#fb7299">喜欢</l-button>
+    <l-button size="long" height="240" width="171" bg-color="#999">删除</l-button>
+  </view>
+</l-slide-view>

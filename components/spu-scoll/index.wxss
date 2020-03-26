@@ -45,7 +45,8 @@
 }
 
 .title {
-  font-size: 18rpx;
+  font-size: 23rpx;
+  font-weight: 400;
   /* 配合宽度 */
   /*max-width: 108rpx;*/
   /*不换行 ...缩略显示*/

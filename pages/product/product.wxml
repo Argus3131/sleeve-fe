@@ -1,5 +1,6 @@
 <!--pages/product/product.wxml-->
 <wxs src="../../filter/price.wxs" module="tools"/>
+<wxs src="../../filter/price.wxs" module="tools"/>
 <scroll-view class="container" scroll-y="true" style="height:{{h}}rpx;">
     <l-banner banners="{{sku_detail.img}}" height="680"/>
     <l-card full="{{true}}" type="cover" title="{{sku_detail.title}}" l-class="life-container" l-title-class="life-title"

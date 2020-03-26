@@ -1,0 +1,127 @@
+/* components/slide-item/index.wxss */
+
+/*.container {*/
+/*  display: flex;*/
+/*  flex-direction: row;*/
+/*  justify-content: space-between;*/
+/*}*/
+
+.cb {
+  margin-left: 10rpx !important;
+}
+
+
+.avatar-con {
+  widows: 240rpx;
+  height: 240rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+.avatar {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.skutag {
+  border-radius: 2px;
+  font-size: 22rpx !important;
+  font-weight: 550;
+}
+.info {
+    margin-left: 1  0rpx;
+}
+
+.cart-item {
+  background-color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  padding: 20rpx;
+}
+
+.title-con {
+  max-width: 550rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.content .title {
+  font-size: 29rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-around;
+  position: relative;
+  bottom: 15rpx;
+  left: -15rpx;
+}
+
+
+
+.del-price {
+  margin-left: 10rpx;
+}
+
+.tag {
+  height: 30rpx !important;
+  /* line-height: 30rpx !important; */
+  padding-right: 10rpx;
+  padding-left: 10rpx;
+  padding-bottom: 10rpx;
+  width: 75rpx;
+}
+
+.tag-small {
+  font-family: "SourceHanSansCN-Normal" !important;
+  font-size: 18rpx !important;
+  font-weight: 400 !important;
+  line-height: 1rpx;
+}
+
+.place {
+  position: relative;
+  left: 100rpx;
+}
+
+.container-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.arrow-down {
+  margin-left: 20rpx;
+  margin-right: 10rpx;
+  border-left: 1px solid #333;
+  border-bottom: 1px solid #333;
+  height: 4px;
+  width: 4px;
+  transform: translate(1px, -1px) rotate(-45deg);
+  -webkit-transform: translate(1px, -1px) rotate(-45deg);
+  border-right: 1px solid transparent;
+  border-top: 1px solid transparent;
+  display: inline-block;
+  -moz-transform: translate(1px, -1px) rotate(-45deg);
+  -ms-transform: translate(1px, -1px) rotate(-45deg);
+  -o-transform: translate(1px, -1px) rotate(-45deg);
+} 
+

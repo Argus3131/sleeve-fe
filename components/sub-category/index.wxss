@@ -7,7 +7,7 @@
     background-color: #fff;
 }
 
-
+/* 必须给一个宽度否则会导致无法自适应均分排列 */
 .inner-container{
     width: 510rpx;
 }

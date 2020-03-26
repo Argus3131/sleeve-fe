@@ -1,3 +1,11 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "s-slide": "/components/slide/index",
+    "s-cart": "/components/cart/index",
+    "s-slide-item": "/components/slide-item/index",
+    "l-checkbox-group": "/miniprogram_npm/lin-ui/checkbox-group/index",
+    "l-checkbox": "/miniprogram_npm/lin-ui/checkbox/index",
+    "l-price": "/miniprogram_npm/lin-ui/price/index",
+    "l-button": "/miniprogram_npm/lin-ui/button/index"
+  }
 }

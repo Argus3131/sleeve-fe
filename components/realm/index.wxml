@@ -15,8 +15,7 @@
             </block>
         </view>
     </scroll-view>
-    <s-counter bind:count="onCount"/>
-    <view>{{type_button}}</view>
+    <s-counter bind:count="onCount" isShow="{{true}}"/>
     <view class="button" wx:if="{{type_button === 'buy'}}">
         <l-button size="medium" width="600" height="60" shape="square" bgColor="#fb7299" bind:lintap="ontapBuy" shape="semicircle">立即购买</l-button>
     </view>

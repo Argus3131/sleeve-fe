@@ -2,9 +2,8 @@
 import { Counter } from '../../models/counter'
 
 Component({
-  /**
-   * 组件的属性列表
-   */
+
+  externalClasses: ["l-place"],
   properties: {
     _count:{
       type: Number,
@@ -14,11 +13,14 @@ Component({
       type: Number,
       value: Counter.cartMinNum
     },
-
     max: {
       type: Number,
       value: Counter.cartMaxNum
     },
+    isShow: {
+      type:Boolean,
+      value:false
+    }
   },
 
   /**

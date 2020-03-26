@@ -6,5 +6,6 @@
     </l-tag>
 
   </block>
-
+  插槽
+  <slot name="aa"></slot>
 </view>

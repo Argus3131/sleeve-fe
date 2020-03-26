@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "s-search": "/components/search/index"
+    "s-slide": "/components/slide/index",
+    "s-slide-item": "/components/slide-item/index"
   }
 }

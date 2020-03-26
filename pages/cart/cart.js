@@ -1,66 +1,158 @@
 // pages/cart/cart.js
+import { getWindowHeightRpx } from '../../utils/system'
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    checkedAll: false,
+    count: null,
+    cart: [],
+    items: [{
+      name: '1',
+      checked: false,
+      img: '/image/2.JPG',
+      price: 699,
+      dis_price: 500,
+      title: '林间有风 自营针织衫 限时售卖 高级品质',
+      sku: '黑色；圆领款；M码',
+    },
+      {
+        name: '2',
+        checked: false,
+        img: '/image/2.JPG',
+        price: 699,
+        dis_price: 500,
+        title: '林间有风 自营针织衫 限时售卖 高级品质',
+        sku: '黑色；圆领款；M码',
+      },
+      {
+        name: '3',
+        checked: false,
+        img: '/image/2.JPG',
+        price: 699,
+        dis_price: 500,
+        title: '林间有风 自营针织衫 限时售卖 高级品质',
+        sku: '黑色；圆领款；M码',
+      },
+      {
+        name: '4',
+        checked: false,
+        img: '/image/2.JPG',
+        price: 699,
+        dis_price: 500,
+        title: '林间有风 自营针织衫 限时售卖 高级品质',
+        sku: '黑色；圆领款；M码',
+      },
+      {
+        name: '5',
+        checked: false,
+        img: '/image/2.JPG',
+        price: 699,
+        dis_price: 500,
+        title: '林间有风 自营针织衫 限时售卖 高级品质',
+        sku: '黑色；圆领款；M码',
+      },
+      {
+        name: '6',
+        checked: false,
+        img: '/image/2.JPG',
+        price: 699,
+        dis_price: 500,
+        title: '林间有风 自营针织衫 限时售卖 高级品质',
+        sku: '黑色；圆领款；M码',
+      },
+    ],
+    batchIds: '', //选中的ids
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  // 对于缓存或mysql存储的购物车数据的校验 实时
+  onLoad: async function (options) {
+    const h = await this.setDynamicSegmentHeight()
+    this.setData({
+      h: h
+    })
   },
-
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 单选SPU
+   * @param event
    */
-  onReady: function () {
-
+  onSelectOne (event) {
+    const res = event.detail
+    this.selectOrCancelOne(res)
   },
-
   /**
-   * 生命周期函数--监听页面显示
+   * 取消单个SPU
+   * @param event
    */
-  onShow: function () {
-
+  onCancelOne (event) {
+    const res = event.detail
+    this.selectOrCancelOne(res)
   },
-
   /**
-   * 生命周期函数--监听页面隐藏
+   * 单选或取消某个
+   * @param res
    */
-  onHide: function () {
-
+  selectOrCancelOne (res) {
+    if (undefined === res || null === res) {return}
+    if (undefined === res.index || null === res.index) {return}
+    if (undefined === res.current_item || null === res.current_item) {return}
+    const _items = this.data.items
+    _items[res.index] = res.current_item
+    this.setData({
+      items: _items,
+    })
+    this.isSelectFull()
   },
+  // todo 假如load 购物车页面 一定要调用一次方法去判断
+  isSelectFull () {
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+    const items = this.data.items
+    const arr = items.filter(item => {return item.checked === true})
+    if (arr.length === items.length) {
+      this.setData({
+        checkedAll: true,
+        cart: arr
+      })
+    } else {
+      this.setData({
+        checkedAll: false,
+        cart: arr
+      })
+    }
+    console.log(this.data.cart)
   },
-
   /**
-   * 页面相关事件处理函数--监听用户下拉动作
+   * 全选
+   * @param event
    */
-  onPullDownRefresh: function () {
-
+  selectAll (event) {
+    const items = this.data.items
+    const _items = items.map(i => {
+      i.checked = true
+      return i
+    })
+    this.setData({
+      items: _items,
+      checkedAll: true
+    })
   },
-
   /**
-   * 页面上拉触底事件的处理函数
+   * 取消全选
+   * @param event
    */
-  onReachBottom: function () {
-
+  cancelAll (event) {
+    const items = this.data.items
+    const _items = items.map(i => {
+      i.checked = false
+      return i
+    })
+    this.setData({
+      items: _items,
+      checkedAll: false
+    })
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  async setDynamicSegmentHeight () {
+    const windowHeight = await getWindowHeightRpx()
+    const h = windowHeight - 88
+    return h
   }
 })

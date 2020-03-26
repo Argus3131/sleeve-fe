@@ -1,0 +1,41 @@
+<!--components/slide-item/index.wxml-->
+<wxs src="../../filter/price.wxs" module="tools" />
+<wxs src="../../miniprogram_npm/lin-ui/filter/string.wxs" module="s"></wxs>
+
+<view class="container">
+
+  <view class="cart-item">
+    <view class="avatar-con">
+      <image src="{{item.img}}" class="avatar" />
+    </view>
+    <view class="content">
+      <view class="title-con">
+        <view class="tag">
+          <l-tag wx:if="{{tools.slashPrice(item.price,item.dis_price).display}}" shape="circle" size="super-mini" type="reading" bg-color="#ca0c16" font-color="#fff" l-class="tag-small" class="disCountTag">
+            折扣
+          </l-tag>
+        </view>
+        <text class="title">{{item.title.length>=6?s.substring(item.title,0,18)+"...":item.title}}</text>
+
+
+      </view>
+      <l-tag size="mini" type="touch" name="name" height="60" bg-color="#f5f5f5" font-color="#333" class="info" l-class="skutag">
+        <view class="container-info">
+          {{item.sku}}
+          <view class="arrow-down"></view>
+        </view>
+      </l-tag>
+      <view class="bottom">
+        <view class='price-container'>
+          <l-price wx:if="{{tools.mainPrice(699,500).display}}" unit="￥" value="{{tools.mainPrice(699,500).price}}" value-color="#f25d8e" unit-color="#f25d8e" value-size="30" unit-size="30" unit-bold="600" value-bold="600" autofix reserve-digit="2" l-unit-class="unit"></l-price>
+          <l-price wx:if="{{tools.slashPrice(699,500).display}}" l-class="del-price" unit="￥" value="{{tools.slashPrice(699,500).price}}" value-color="#ad0e11" unit-color="#ad0e11" deleted del-color="#666" value-color="#666" unit-color="#666" value-size="20" unit-size="20"
+            class="price2"></l-price>
+
+        </view>
+        <s-counter class="place" />
+      </view>
+
+    </view>
+
+  </view>
+</view>

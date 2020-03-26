@@ -57,7 +57,7 @@ Page({
     const bannerB = await Banner.getLocationB()
     const gridC = await Category.getLocationC()
     const activityD = await Activity.getLocationD()
-    // 我们将硬编码的数据't-2' 放在类内部处理掉 await Theme.getLocationESpu('t-2')
+    // 将硬编码的数据't-2' 放在类内部处理掉 await Theme.getLocationESpu('t-2')
     // 由于scollersE对应的是每日上新 因此我们可以加个判断是否上下架子
     let scollersE = null
     let scollE_spu_List

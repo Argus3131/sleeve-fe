@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "l-slide-view": "/miniprogram_npm/lin-ui/slide-view/index",
+    "l-button": "/miniprogram_npm/lin-ui/button/index",
+    "s-counter":"/components/counter/index",
+    "s-slide-item": "/components/slide-item/index"
+  }
+}

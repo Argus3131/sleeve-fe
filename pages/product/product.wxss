@@ -171,11 +171,6 @@
     line-height: 1rpx;
 }
 
-.disCountTag {
-    position: absolute;
-    left: 250rpx;
-    bottom: 5.4rpx;
-}
 
 .cartTab {
     position: fixed;

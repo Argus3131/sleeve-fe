@@ -1,2 +1,58 @@
-<!--pages/test/test.wxml-->
-<text>pages/test/test.wxml</text>
+<!-- <view class="container">
+  <s-slide >
+    <s-slide-item></s-slide-item>
+  </s-slide>
+</view> -->
+
+<view class='onlinechoose'>
+  <view class='hotel_list flex_center' wx:for="{{items}}" wx:key="items" wx:for-item="i" data-id="{{index}}" bindtap='select'>
+    <view class='list_cons flex_start'>
+      <view wx:if="{{management_good}}" class='lefts'>
+        <block wx-if="{{!i.checked}}">
+          <view class='icon_none'></view>
+        </block>
+        <block wx-if="{{i.checked}}">
+          <icon type="success" size="20" color="#fb7299"/>
+        </block>
+      </view>
+      <image src='{{imgUrl}}'></image>
+      <view class='right'>
+        <view class='name'>
+          标号： {{i.name}}
+        </view>
+      <view> 测试数据</view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='bottom flex_between' wx:if="{{management_good}}">
+  <view class='left flex_start'>
+    <block wx:if="{{select_all}}">
+      <view bindtap='select_none' class='flex_start'>
+        <icon type="success" size="20" color="#fb7299" />
+        <view>
+          取消全选
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{!select_all}}">
+      <view bindtap='select_all' class='flex_start'>
+        <view class='select_none'>
+        </view>
+        <view>
+          全选
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class='right flex_end'>
+    <view style='text-align:right'>
+      <view class='all'>
+        共选中{{middlearr.length}}件商品
+      </view>
+    </view>
+    <view bindtap='deleteitem' class='sure'>
+      删除
+    </view>
+  </view>
+</view>

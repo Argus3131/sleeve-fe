@@ -22,6 +22,11 @@ class Categories {
     return this.roots
   }
 
+  /**
+   * 通过filter 将后端返回的 相同1级节点的数据过滤出来便于展示
+   * @param rootId
+   * @returns {*[]}
+   */
   getSubs (rootId) {
     // find只能找到第一个 但是filter能找到 符合条件的 全部的子元素
     return this.subs.filter(r => rootId === r.parent_id)
