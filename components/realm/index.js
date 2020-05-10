@@ -12,12 +12,16 @@ Component({
     judger: null,
     count: Counter.cartMinNum,
     kindBtnPreview: null,
-    defaultStock: Stock.DEFAULT_STOCK
+    defaultStock: Stock.DEFAULT_STOCK,
+    selected_type_button:null
   },
   observers: {
-    // 'type_button':function (type_button) {
-    //   console.log(type_button)
-    // },
+    'type_button':function (type_button) {
+      if(!type_button) {return}
+      if (type_button === "buy" || type_button === "cart") {
+        this.setData({ selected_type_button:type_button})
+      }
+    },
     'spu': function (spu) {
       if (spu) {
         const hasNoneSku = this.isHasSku(spu)
@@ -133,7 +137,7 @@ Component({
       // 选择时候要判断
       const isSelectFull = judger.skuPending.judgePendingFull()
       const changeTitle = this.changeTitle()
-      //判断无货
+      // 判断无货
       this.judgeHasStock(isSelectFull)
       // 返回view 提供specChange所需数据
       this.returnSpecChangeData(this.data.hasNoneSku, changeTitle, isSelectFull)
@@ -169,10 +173,13 @@ Component({
       this.judgeHasStock(this.data.isSelectFull)
     },
     judgeHasStock (isSelectFull) {
-      if (!this.data.kindBtnPreview) {
-        console.log("judgeHasStock:"+this.properties.type_button)
-        this.data.kindBtnPreview = this.properties.type_button
-      }
+      /**
+       * BUG: 这边一定要清空一次type_button状态的记录否则第二次判断就会直接拿上次打开按钮状态
+       */
+      // this.setData({ kindBtnPreview: null })
+      // if (!this.data.kindBtnPreview) {
+      //   this.data.kindBtnPreview = this.properties.type_button
+      // }
       // 三种缺货状态 选中规格判断规格stock
       if (isSelectFull) {
         const stock = this.data.stock
@@ -180,8 +187,8 @@ Component({
         if (count > stock) {
           this.setData({ type_button: 'noStock' })
         } else {
-          console.log("kindBtnPreview"+this.data.kindBtnPreview)
-          this.setData({ type_button: this.data.kindBtnPreview })
+          // console.log("kindBtnPreview--"+this.data.kindBtnPreview)
+          this.setData({ type_button: this.data.selected_type_button })
         }
       } else {
         const stock = this.data.defaultStock
@@ -189,14 +196,13 @@ Component({
         if (count > stock) {
           this.setData({ type_button: 'noStock' })
         } else {
-          console.log("kindBtnPreview"+this.data.kindBtnPreview)
-          this.setData({ type_button: this.data.kindBtnPreview })
+          /**
+           * 这边设置了一次 每次判断 前状态
+           */
+          this.setData({ type_button: this.data.selected_type_button })
         }
       }
-      /**
-       * BUG: 这边一定要清空一次type_button状态的记录否则第二次判断就会直接拿上次打开按钮状态
-       */
-      this.setData({ kindBtnPreview: null })
+
     },
     returnSpecChangeData (hasNoneSku, changeTitle, isSelectFull) {
       if (hasNoneSku) {
